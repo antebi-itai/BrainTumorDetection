@@ -24,19 +24,20 @@ class DataGenerator(Dataset):
     tumor_types       - list of types of tumors corresponding to tumor_image_paths.
                         i.e. tumor_types[idx] is the type of tumor in image tumor_image_paths[idx]
     tumor_type2name   - dictionary mapping type of tumor (integer) to tumor's scientific name.
+    tumor_name2type   - dictionary mapping tumor's scientific name to type of tumor (integer).
     """
 
-    def __init__(self, data_dir, input_size=(256, 256)):
+    def __init__(self, data_dir, input_size=(256, 256), reshape_input=True):
         self.data_dir = data_dir
         self.tumor_dirs = os.listdir(self.data_dir)
         self.input_size = input_size
+        self.reshape_input = reshape_input
         assert all([tumor_dir.endswith("_tumor") for tumor_dir in self.tumor_dirs])
 
         # define transforms
-        self._input_transforms = transforms.Compose([
-            transforms.Resize(self.input_size),
-            transforms.ToTensor()
-        ])
+        input_transforms = [transforms.ToTensor()]
+        if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
+        self._input_transforms = transforms.Compose(input_transforms)
         self._vis_transforms = transforms.Compose([
             Clip(min=0, max=1),
             transforms.ToPILImage()
@@ -46,10 +47,12 @@ class DataGenerator(Dataset):
         self.tumor_image_paths = []
         self.tumor_types = []
         self.tumor_type2name = {}
+        self.tumor_name2type = {}
         for tumor_type, tumor_dir in enumerate(self.tumor_dirs):
             # add tumor name to type2name dict
             tumor_name = tumor_dir.replace("_tumor", "")
             self.tumor_type2name[tumor_type] = tumor_name
+            self.tumor_name2type[tumor_name] = tumor_type
             # add tumor image paths and types to lists
             tumor_image_paths = [os.path.join(self.data_dir, tumor_dir, file_name)
                                  for file_name in os.listdir(os.path.join(self.data_dir, tumor_dir))]
