@@ -69,3 +69,38 @@ class DataGenerator(Dataset):
         with Image.open(tumor_image_path) as tumor_image:
             tumor_image_input = self._input_transforms(tumor_image)
         return tumor_image_input, tumor_label
+
+
+class OccludedDataGenerator(Dataset):
+    """
+
+    """
+    def __init__(self, ref_image_path, occlusion_size=10, stride=1, input_size=(256, 256), reshape_input=True):
+        self.ref_image_path = ref_image_path
+        self.input_size = input_size
+        self.reshape_input = reshape_input
+
+        input_transforms = [transforms.ToTensor()]
+        if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
+
+        with Image.open(ref_image_path) as tumor_image:
+            self.ref_image = input_transforms(tumor_image)
+
+        self._form_occlusions()
+
+    def _form_occlusions(self):
+        with Image.open(self.ref_image) as tumor_image:
+            tumor_image_input = self._input_transforms(tumor_image)
+
+        # TODO: Sequentially form occlusions (according to stride and size) and save to images and pos correspondingly
+        self.images = None
+        self.pos = None
+
+    def get_ref_image(self):
+        return self.ref_image
+
+    def __len__(self):
+        return len(self.images)
+
+    def __getitem__(self, idx):
+        return self.pos[idx], self.images[idx]
