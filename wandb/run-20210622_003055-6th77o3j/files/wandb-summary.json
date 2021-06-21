@@ -1,0 +1,1 @@
+{"Train/loss": 1.2601728439331055, "_runtime": 60, "_timestamp": 1624311115, "_step": 347, "Train/accuracy/glioma": 0.37037035822868347, "Train/accuracy/meningioma": 0.42105263471603394, "Train/accuracy/no": 0.0, "Train/accuracy/pituitary": 0.20000000298023224, "Train/accuracy": 0.30000001192092896}
