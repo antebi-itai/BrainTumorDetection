@@ -1,8 +1,13 @@
 
 
-def accuracy(pred_tumors_scores, gt_tumor_types):
+def accuracy(pred_tumors_scores, gt_tumor_types, tumor_type=None):
 	batch_size = gt_tumor_types.size(0)
 	_, pred_tumors_types = pred_tumors_scores.max(dim=1)
-	correct_predictions = (pred_tumors_types == gt_tumor_types).count_nonzero()
-	acc = correct_predictions / batch_size
+	if tumor_type is None:
+		correct_predictions = (pred_tumors_types == gt_tumor_types).count_nonzero()
+		acc = correct_predictions / batch_size
+	else:
+		correct_tumor_predictions = ((pred_tumors_types == gt_tumor_types) & (gt_tumor_types == tumor_type)).count_nonzero()
+		tumor_batch_size = (gt_tumor_types == tumor_type).count_nonzero()
+		acc = correct_tumor_predictions / tumor_batch_size
 	return acc
