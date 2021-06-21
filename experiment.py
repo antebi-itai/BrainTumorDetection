@@ -3,7 +3,7 @@ from train import train
 from loss import accuracy
 from feature_extractor import FeatureExtractor
 from network import VGGNet
-from data import DataGenerator, OccludedDataGenerator
+from data import DataGenerator, OccludedImageGenerator
 
 class Experiment:
     """
@@ -47,8 +47,8 @@ class Experiment:
     """
     TODO: Doc
     """
-    def run(self, image_path):
-        occluded_loader = torch.utils.data.DataLoader(OccludedDataGenerator(image_path),
+    def generate_heatmap(self, image_path):
+        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path),
                                                       batch_size=self.batch_size, shuffle=self.shuffle_data)
         # Start extracting features
         fe = FeatureExtractor(model=self.model, layers=[1, 2, 3, 4, 5], device=self.device)
@@ -56,7 +56,7 @@ class Experiment:
 
         # Forward pass over reference image & Flag (per layer) the `ref_channel` as the channel with max value
         ref_channel = {}
-        self._inference([None, occluded_loader.get_ref_image()])
+        self._inference([None, occluded_loader.dataset.get_ref_image()])
         features = fe.flush_features()
 
         for layer, feature_layer in features:

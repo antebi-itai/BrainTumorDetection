@@ -71,7 +71,7 @@ class DataGenerator(Dataset):
         return tumor_image_input, tumor_label
 
 
-class OccludedDataGenerator(Dataset):
+class OccludedImageGenerator(Dataset):
     """
 
     """
