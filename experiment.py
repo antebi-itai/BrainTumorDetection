@@ -28,8 +28,8 @@ class Experiment:
     TODO: Doc
     """
     def train_model(self):
-        return train(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
-                     optimizer=self.optimizer, loader=self.loader, epochs=self.epochs, device=self.device)
+        train(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
+              optimizer=self.optimizer, loader=self.loader, epochs=self.epochs, device=self.device)
 
     """
     TODO: Doc
