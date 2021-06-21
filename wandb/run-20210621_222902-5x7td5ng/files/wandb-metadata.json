@@ -1,0 +1,21 @@
+{
+    "os": "Linux-3.10.0-1127.el7.x86_64-x86_64-with-glibc2.17",
+    "python": "3.9.5",
+    "heartbeatAt": "2021-06-21T19:29:11.264353",
+    "startedAt": "2021-06-21T19:29:02.907733",
+    "docker": null,
+    "gpu": "Tesla V100-SXM2-32GB",
+    "gpu_count": 1,
+    "cpu_count": 80,
+    "cuda": "11.0.228",
+    "args": [
+        "-f",
+        "/home/labs/waic/itaian/.cache/jupyter-runtime/208522/kernel-c920cd06-d9cf-4274-a49c-7a12cc3ef6e2.json"
+    ],
+    "state": "running",
+    "program": "BrainTumorDetection/BrainTumorDetection.ipynb",
+    "root": "/home/labs/waic/itaian",
+    "host": "ibdgx006.wexac.weizmann.ac.il",
+    "username": "itaian",
+    "executable": "/home/labs/waic/itaian/.conda/envs/itai-env/bin/python"
+}

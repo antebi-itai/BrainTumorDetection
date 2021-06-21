@@ -1,0 +1,149 @@
+2021-06-21 22:29:02,915 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting env: {}
+2021-06-21 22:29:02,916 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-06-21 22:29:02,916 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {'api_key': '36f32909cb356a5de08fb85f447e1695225cdaec'}
+2021-06-21 22:29:02,917 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-06-21 22:29:02,917 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-06-21 22:29:02,917 INFO    MainThread:50314 [wandb_init.py:_log_setup():337] Logging user logs to /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210621_222902-5x7td5ng/logs/debug.log
+2021-06-21 22:29:02,917 INFO    MainThread:50314 [wandb_init.py:_log_setup():338] Logging internal logs to /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210621_222902-5x7td5ng/logs/debug-internal.log
+2021-06-21 22:29:02,918 INFO    MainThread:50314 [wandb_init.py:init():370] calling init triggers
+2021-06-21 22:29:02,918 INFO    MainThread:50314 [wandb_init.py:init():375] wandb.init called with sweep_config: {}
+config: {}
+2021-06-21 22:29:02,918 INFO    MainThread:50314 [wandb_init.py:init():390] re-initializing run, found existing run on stack: 19s6wzpb
+2021-06-21 22:29:02,920 INFO    MainThread:50314 [wandb_run.py:finish():1294] finishing run antebi-itai/BrainTumorDetection/19s6wzpb
+2021-06-21 22:29:02,922 INFO    MainThread:50314 [jupyter.py:save_history():339] not saving jupyter history
+2021-06-21 22:29:02,922 INFO    MainThread:50314 [jupyter.py:save_ipynb():284] not saving jupyter notebook
+2021-06-21 22:29:02,923 INFO    MainThread:50314 [wandb_init.py:_jupyter_teardown():269] cleaning up jupyter logic
+2021-06-21 22:29:02,923 INFO    MainThread:50314 [wandb_run.py:_atexit_cleanup():1594] got exitcode: 0
+2021-06-21 22:29:02,923 INFO    MainThread:50314 [wandb_run.py:_restore():1566] restore
+2021-06-21 22:29:03,622 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 726
+  total_bytes: 726
+}
+
+2021-06-21 22:29:04,568 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 726
+  total_bytes: 726
+}
+
+2021-06-21 22:29:05,079 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 726
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:05,461 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 726
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:05,563 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 3448
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:05,666 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 3448
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:05,768 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 11686
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:05,872 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 11686
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:05,973 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 11686
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:06,076 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 11686
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:06,178 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 11686
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:06,281 INFO    MainThread:50314 [wandb_run.py:_wait_for_finish():1716] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 11686
+  total_bytes: 11686
+}
+
+2021-06-21 22:29:07,536 INFO    MainThread:50314 [wandb_run.py:_show_summary():1871] rendering summary
+2021-06-21 22:29:07,538 INFO    MainThread:50314 [wandb_run.py:_show_history():1909] rendering history
+2021-06-21 22:29:07,539 INFO    MainThread:50314 [wandb_run.py:_show_files():1938] logging synced files
+2021-06-21 22:29:07,545 INFO    MainThread:50314 [wandb_init.py:init():419] starting backend
+2021-06-21 22:29:07,546 INFO    MainThread:50314 [backend.py:_multiprocessing_setup():70] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-06-21 22:29:07,549 INFO    MainThread:50314 [backend.py:ensure_launched():135] starting backend process...
+2021-06-21 22:29:07,619 INFO    MainThread:50314 [backend.py:ensure_launched():139] started backend process with pid: 76879
+2021-06-21 22:29:07,621 INFO    MainThread:50314 [wandb_init.py:init():424] backend started and connected
+2021-06-21 22:29:07,639 INFO    MainThread:50314 [wandb_run.py:_label_probe_notebook():845] probe notebook
+2021-06-21 22:29:07,640 INFO    MainThread:50314 [wandb_run.py:_label_probe_notebook():852] Unable to probe notebook: 'NoneType' object has no attribute 'get'
+2021-06-21 22:29:07,640 INFO    MainThread:50314 [wandb_init.py:init():472] updated telemetry
+2021-06-21 22:29:07,641 INFO    MainThread:50314 [wandb_init.py:init():491] communicating current version
+2021-06-21 22:29:09,098 INFO    MainThread:50314 [wandb_init.py:init():496] got version response 
+2021-06-21 22:29:09,099 INFO    MainThread:50314 [wandb_init.py:init():504] communicating run to backend with 30 second timeout
+2021-06-21 22:29:09,444 INFO    MainThread:50314 [wandb_init.py:init():529] starting run threads in backend
+2021-06-21 22:29:14,451 INFO    MainThread:50314 [wandb_run.py:_console_start():1624] atexit reg
+2021-06-21 22:29:14,452 INFO    MainThread:50314 [wandb_run.py:_redirect():1498] redirect: SettingsConsole.WRAP
+2021-06-21 22:29:14,452 INFO    MainThread:50314 [wandb_run.py:_redirect():1535] Wrapping output streams.
+2021-06-21 22:29:14,454 INFO    MainThread:50314 [wandb_run.py:_redirect():1559] Redirects installed.
+2021-06-21 22:29:14,454 INFO    MainThread:50314 [wandb_init.py:init():554] run started, returning control to user process
+2021-06-21 22:35:02,709 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting env: {}
+2021-06-21 22:35:02,709 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-06-21 22:35:02,709 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {'api_key': '36f32909cb356a5de08fb85f447e1695225cdaec'}
+2021-06-21 22:35:02,709 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-06-21 22:35:02,709 INFO    MainThread:50314 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-06-21 22:35:02,710 INFO    MainThread:50314 [wandb_init.py:_log_setup():337] Logging user logs to /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210621_223502-b6og5k8y/logs/debug.log
+2021-06-21 22:35:02,710 INFO    MainThread:50314 [wandb_init.py:_log_setup():338] Logging internal logs to /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210621_223502-b6og5k8y/logs/debug-internal.log
+2021-06-21 22:35:02,710 INFO    MainThread:50314 [wandb_init.py:_jupyter_setup():288] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x2b9c51454880>
+2021-06-21 22:35:02,711 INFO    MainThread:50314 [wandb_init.py:init():370] calling init triggers
+2021-06-21 22:35:02,711 INFO    MainThread:50314 [wandb_init.py:init():375] wandb.init called with sweep_config: {}
+config: {'vgg_version': '19', 'data_train_path': './Data/Training', 'batch_size': 100, 'shuffle_data': True, 'lr': 0.001, 'epochs': 3, 'device': 'cuda'}
+2021-06-21 22:35:02,711 INFO    MainThread:50314 [wandb_init.py:init():390] re-initializing run, found existing run on stack: 5x7td5ng
+2021-06-21 22:35:02,712 INFO    MainThread:50314 [wandb_run.py:finish():1294] finishing run antebi-itai/BrainTumorDetection/5x7td5ng
