@@ -10,15 +10,14 @@ class Experiment:
     TODO: DOC.
     """
 
-    def __init__(self, config, device='cuda'):
+    def __init__(self, config):
         assert config is not None
 
         for key, value in config.items():
             setattr(self, key, value)
 
         # training setting
-        self.device = device
-        self.model = VGGNet().to(self.device)
+        self.model = VGGNet(self.vgg_version).to(self.device)
         self.criterion = torch.nn.functional.cross_entropy
         self.accuracy = accuracy
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
