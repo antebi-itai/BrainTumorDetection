@@ -35,7 +35,7 @@ class DataGenerator(Dataset):
         assert all([tumor_dir.endswith("_tumor") for tumor_dir in self.tumor_dirs])
 
         # define transforms
-        input_transforms = [transforms.ToTensor()]
+        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=1)]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
         self._input_transforms = transforms.Compose(input_transforms)
         self._vis_transforms = transforms.Compose([
@@ -67,40 +67,42 @@ class DataGenerator(Dataset):
         tumor_label = self.tumor_types[idx]
         tumor_image_path = self.tumor_image_paths[idx]
         with Image.open(tumor_image_path) as tumor_image:
-            tumor_image_input = self._input_transforms(tumor_image)
+            tumor_image_input = self._input_transforms(tumor_image).squeeze()
         return tumor_image_input, tumor_label
 
 
 class OccludedImageGenerator(Dataset):
-    """
-
-    """
-    def __init__(self, ref_image_path, occlusion_size=10, stride=1, input_size=(256, 256), reshape_input=True):
+    def __init__(self, ref_image_path, occlusion_size=50, input_size=(256, 256), reshape_input=True):
         self.ref_image_path = ref_image_path
         self.input_size = input_size
         self.reshape_input = reshape_input
+        self.occlusion_size = occlusion_size
 
-        input_transforms = [transforms.ToTensor()]
+        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=1)]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
+        input_filter = transforms.Compose(input_transforms)
 
         with Image.open(ref_image_path) as tumor_image:
-            self.ref_image = input_transforms(tumor_image)
-
-        self._form_occlusions()
-
-    def _form_occlusions(self):
-        with Image.open(self.ref_image) as tumor_image:
-            tumor_image_input = self._input_transforms(tumor_image)
-
-        # TODO: Sequentially form occlusions (according to stride and size) and save to images and pos correspondingly
-        self.images = None
-        self.pos = None
+            self.ref_image = input_filter(tumor_image).squeeze()
 
     def get_ref_image(self):
         return self.ref_image
 
     def __len__(self):
-        return len(self.images)
+        return self.input_size[0] * self.input_size[1]
 
     def __getitem__(self, idx):
-        return self.pos[idx], self.images[idx]
+        i = idx // self.input_size[1]
+        j = idx % self.input_size[1]
+
+        h = w = self.occlusion_size // 2
+
+        left = max(j - w, 0)
+        up = max(i - h, 0)
+        right = min(j + w, self.input_size[1])
+        down = min(i + h, self.input_size[0])
+
+        image = torch.clone(self.ref_image)
+        image[up:down, left:right] = 0
+
+        return (i, j), image

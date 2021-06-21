@@ -48,10 +48,12 @@ class Experiment:
     TODO: Doc
     """
     def generate_heatmap(self, image_path):
-        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path),
+        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path,
+                                                                             occlusion_size=self.occlusion_size),
                                                       batch_size=self.batch_size, shuffle=self.shuffle_data)
+
         # Start extracting features
-        fe = FeatureExtractor(model=self.model, layers=[1, 2, 3, 4, 5], device=self.device)
+        fe = FeatureExtractor(model=self.model, layers=[1], device=self.device)
         fe.plug()
 
         # Forward pass over reference image & Flag (per layer) the `ref_channel` as the channel with max value
