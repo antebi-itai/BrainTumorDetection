@@ -2,12 +2,11 @@ from torch.nn import Module, Linear
 import torchvision
 
 
-class VGGNet(Module):
+def get_model(self, model_name='vgg19', pretrained=True, num_class=2):
+	if model_name == 'vgg19':
+		model = getattr(torchvision.models, model_name)(pretrained=pretrained)
+		model.classifier[-1] = Linear(in_features=4096, out_features=num_class, bias=True)
+	else:
+		raise NotImplementedError
 
-	def __init__(self, vgg_version="19", pretrained=True, num_classes=2):
-		super(VGGNet, self).__init__()
-		self.model = getattr(torchvision.models, "vgg" + vgg_version)(pretrained=pretrained)
-		self.model.classifier[-1] = Linear(in_features=4096, out_features=num_classes, bias=True)
-
-	def forward(self, x):
-		return self.model(x)
+	return model

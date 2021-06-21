@@ -3,6 +3,8 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from PIL import Image
 import os
+import util
+import random
 
 
 class Clip:
@@ -71,8 +73,20 @@ class DataGenerator(Dataset):
         return tumor_image_input, tumor_label
 
 
+class RandomOccludedDataGenerator(DataGenerator):
+    def __init__(self, data_dir, occlusion_size=(50, 50), input_size=(256, 256), reshape_input=True):
+        super().__init__(self, data_dir, input_size, reshape_input)
+        self.occlusion_size = occlusion_size
+
+    def __getitem__(self, idx):
+        tumor_image_input, tumor_label = super().__getitem__(idx)
+        rand_occlusion = random.randint(0, tumor_image_input.shape[0] * tumor_image_input.shape[1] - 1)
+
+        return util.occlude_image(tumor_image_input, rand_occlusion, self.occlusion_size)
+
+
 class OccludedImageGenerator(Dataset):
-    def __init__(self, ref_image_path, occlusion_size=50, reshape_input=True, reshape_input_size=(256, 256)):
+    def __init__(self, ref_image_path, occlusion_size=(50, 50), reshape_input=True, reshape_input_size=(256, 256)):
         self.ref_image_path = ref_image_path
         self.reshape_input = reshape_input
         self.occlusion_size = occlusion_size
@@ -83,26 +97,16 @@ class OccludedImageGenerator(Dataset):
 
         with Image.open(ref_image_path) as tumor_image:
             self.ref_image = input_filter(tumor_image).squeeze()
-            self.image_size = self.ref_image.shape
 
-    def get_ref_image(self):
+    def get_image(self):
         return self.ref_image
 
     def __len__(self):
-        return self.image_size[0] * self.image_size[1]
+        return self.ref_image.shape[0] * self.ref_image.shape[1]
 
     def __getitem__(self, idx):
-        i = idx // self.image_size[1]
-        j = idx % self.image_size[1]
-
-        h = w = self.occlusion_size // 2
-
-        left = max(j - w, 0)
-        up = max(i - h, 0)
-        right = min(j + w, self.image_size[1])
-        down = min(i + h, self.image_size[0])
-
         image = torch.clone(self.ref_image)
-        image[up:down, left:right] = 0
+        util.occlude_image(image, idx, occlusion_size=self.occlusion_size)
+        pt = torch.tensor(util.idx2coords(idx, image))
 
-        return torch.tensor((i,j)), image
+        return pt, image

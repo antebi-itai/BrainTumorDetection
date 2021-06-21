@@ -2,8 +2,9 @@ import torch
 from train import train
 from loss import accuracy
 from feature_extractor import FeatureExtractor
-from network import VGGNet
 from data import DataGenerator, OccludedImageGenerator
+from network import get_model
+
 
 class Experiment:
     """
@@ -17,7 +18,7 @@ class Experiment:
             setattr(self, key, value)
 
         # training setting
-        self.model = VGGNet(self.vgg_version).to(self.device)
+        self.model = get_model(self.model_name).to(self.device)
         self.criterion = torch.nn.functional.cross_entropy
         self.accuracy = accuracy
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
@@ -34,19 +35,6 @@ class Experiment:
     """
     TODO: Doc
     """
-    def _inference(self, loader):
-        pts_metric = []
-        for pts, images in loader:
-            pts, images = pts.to(device=self.device), images.to(device=self.device)
-
-            self.model(images)
-            pts_metric.append(pts)  # TODO: Seems wrong (should be "concatenated")
-
-        return pts_metric
-
-    """
-    TODO: Doc
-    """
     def generate_heatmap(self, image_path):
         occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path,
                                                                              occlusion_size=self.occlusion_size),
@@ -58,7 +46,8 @@ class Experiment:
 
         # Forward pass over reference image & Flag (per layer) the `ref_channel` as the channel with max value
         ref_channel = {}
-        self._inference([None, occluded_loader.dataset.get_ref_image()])
+        import pdb; pdb.set_trace() #TODO: Problem here is it expects image with 3 channels, however our's greyscale
+        self.model(occluded_loader.dataset.get_image().unsqueeze(0).unsqueeze(0))
         features = fe.flush_features()
 
         for layer, feature_layer in features:
