@@ -72,37 +72,37 @@ class DataGenerator(Dataset):
 
 
 class OccludedImageGenerator(Dataset):
-    def __init__(self, ref_image_path, occlusion_size=50, input_size=(256, 256), reshape_input=True):
+    def __init__(self, ref_image_path, occlusion_size=50, reshape_input=True, reshape_input_size=(256, 256)):
         self.ref_image_path = ref_image_path
-        self.input_size = input_size
         self.reshape_input = reshape_input
         self.occlusion_size = occlusion_size
 
         input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=1)]
-        if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
+        if self.reshape_input: input_transforms.insert(0, transforms.Resize(reshape_input_size))
         input_filter = transforms.Compose(input_transforms)
 
         with Image.open(ref_image_path) as tumor_image:
             self.ref_image = input_filter(tumor_image).squeeze()
+            self.image_size = self.ref_image.shape
 
     def get_ref_image(self):
         return self.ref_image
 
     def __len__(self):
-        return self.input_size[0] * self.input_size[1]
+        return self.image_size[0] * self.image_size[1]
 
     def __getitem__(self, idx):
-        i = idx // self.input_size[1]
-        j = idx % self.input_size[1]
+        i = idx // self.image_size[1]
+        j = idx % self.image_size[1]
 
         h = w = self.occlusion_size // 2
 
         left = max(j - w, 0)
         up = max(i - h, 0)
-        right = min(j + w, self.input_size[1])
-        down = min(i + h, self.input_size[0])
+        right = min(j + w, self.image_size[1])
+        down = min(i + h, self.image_size[0])
 
         image = torch.clone(self.ref_image)
         image[up:down, left:right] = 0
 
-        return (i, j), image
+        return torch.tensor((i,j)), image
