@@ -20,8 +20,12 @@ class Experiment:
         # training setting
         self.criterion = torch.nn.functional.cross_entropy
         self.accuracy = accuracy
-        self.loader = torch.utils.data.DataLoader(DataGenerator(self.data_train_path),
-                                                  batch_size=self.batch_size, shuffle=self.shuffle_data)
+        self.test_dataset = DataGenerator(self.data_test_path)
+        self.train_dataset = DataGenerator(self.data_train_path)
+        weights = self.train_dataset.make_weights_for_balanced_classes()
+        sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
+        self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.batch_size, shuffle=True)
+        self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset, batch_size=self.batch_size, sampler=sampler)
         self.model = VGGNet(vgg_version=self.vgg_version).to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
 
@@ -30,7 +34,8 @@ class Experiment:
     """
     def train_model(self):
         train(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
-              optimizer=self.optimizer, loader=self.loader, epochs=self.epochs, device=self.device)
+              optimizer=self.optimizer, train_loader=self.train_loader, test_loader=self.test_loader,
+              epochs=self.epochs, device=self.device)
 
     """
     TODO: Doc

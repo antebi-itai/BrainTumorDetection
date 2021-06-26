@@ -69,6 +69,23 @@ class DataGenerator(Dataset):
             tumor_image_input = self._input_transforms(tumor_image)
         return tumor_image_input, tumor_label
 
+    def make_weights_for_balanced_classes(self):
+        nclasses = len(self.tumor_type2name)
+
+        count = [0] * nclasses
+        for tumor_type in self.tumor_types:
+            count[tumor_type] += 1
+
+        weight_per_class = [0.] * nclasses
+        N = float(sum(count))
+        for i in range(nclasses):
+            weight_per_class[i] = N / float(count[i])
+
+        weights = [0] * len(self.tumor_types)
+        for idx, tumor_type in enumerate(self.tumor_types):
+            weights[idx] = weight_per_class[tumor_type]
+        return torch.DoubleTensor(weights)
+
 
 class OccludedImageGenerator(Dataset):
     """
