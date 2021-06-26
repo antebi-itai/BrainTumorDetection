@@ -8,7 +8,7 @@ from torchvision import models
 class FeatureExtractor:
   """This class facilitates extracting features from a pretrained network """
 
-  def __init__(self, model, layers, device='cuda'):
+  def __init__(self, model, device='cuda'):
     """
     Args:
       device (string): Device to host model on. Default host on cuda.
@@ -17,58 +17,68 @@ class FeatureExtractor:
 
     # Save arguments
     self.model = model
-    self.layers = layers
 
     # Make room for layers output
     self.layers_output = {}
-    for layer in layers:
-      self.layers_output[layer] = []
+    self.activations_output = {}
 
     # initiate a list to hold the hooks handlers.
-    self.hook_handlers = []
+    self.layer_hook_handlers = []
+    self.activation_hook_handlers = []
 
-  def _get_hook(self, layer):
+  def _init_layer_hook(self, layer):
     """
     Defines the hook for extracting the features of `layer`
     Returns:            
       The method to hook. 
     """
     def _get_layer_output(model, input, output):
-      self.layers_output[layer].append(output)
+      self.layers_output[layer] = output
     return _get_layer_output
 
-  def plug(self):
-    """
-    Registers all the hooks to perform extraction.
-    Args:
-      kwargs (dict(string, List(int))): dictionary with all keys in KEY_LIST.
-      Each key's value is a list of all the layers to extract for this key.
-    """
-    for layer in self.layers:
-      hook = self._get_hook(layer)
+  def plug_layer(self, layer):
+    hook = self._init_layer_hook(layer)
+    handle = self.model.features[layer].register_forward_hook(hook)
+    self.layer_hook_handlers.append(handle)
+
+  def _init_activation_hook(self, layer, channel):
+    key = 'L'+str(layer)+'C'+str(channel)
+    self.activations_output[key] = []
+
+    def _get_channel_activation(model, input, output):
+      channel_activation = torch.sum(output[:, channel, :, :], dim=(1,2))
+      self.activations_output[key].append(channel_activation)
+    return _get_channel_activation
+
+  def plug_activation(self, layer, channel):
+      hook = self._init_activation_hook(layer, channel)
       handle = self.model.features[layer].register_forward_hook(hook)
-      self.hook_handlers.append(handle)
+      self.activation_hook_handlers.append(handle)
 
-  def unplug(self):
-    """
-    Unregisters all the hooks after performing an extraction.
-    """
-    # BEGIN SOLUTION
-    for hook_handle in self.hook_handlers:
-      hook_handle.remove()
-    # END SOLUTION
-
-  def flush_features(self):
+  def flush_layers(self):
     """
     Returns the features
     """
     # Copy and clean the slate
     layers_output = dict(self.layers_output)
+    self.layers_output = {}
 
-    for layer in self.layers:
-      self.layers_output[layer] = []
+    for handle in self.layer_hook_handlers:
+      handle.remove()
 
     return layers_output
 
+  def flush_activations(self):
+    """
+    Returns the features
+    """
+    # Copy and clean the slate
+    activations_output = dict(self.activations_output)
+    self.activations_output = {}
+
+    for handle in self.activation_hook_handlers:
+      handle.remove()
+    
+    return activations_output
 
 

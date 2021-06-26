@@ -3,6 +3,8 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from PIL import Image
 import os
+import util
+import random
 
 
 class Clip:
@@ -37,7 +39,7 @@ class DataGenerator(Dataset):
         assert all([tumor_dir.endswith("_tumor") for tumor_dir in self.tumor_dirs])
 
         # define transforms
-        input_transforms = [transforms.ToTensor()]
+        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=3)]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
         self._input_transforms = transforms.Compose(input_transforms)
         self._vis_transforms = transforms.Compose([
@@ -87,36 +89,39 @@ class DataGenerator(Dataset):
         return torch.DoubleTensor(weights)
 
 
+class RandomOccludedDataGenerator(DataGenerator):
+    def __init__(self, data_dir, occlusion_size=(50, 50), input_size=(256, 256), reshape_input=True):
+        super().__init__(self, data_dir, input_size, reshape_input)
+        self.occlusion_size = occlusion_size
+
+    def __getitem__(self, idx):
+        tumor_image_input, tumor_label = super().__getitem__(idx)
+        rand_occlusion = random.randint(0, tumor_image_input.shape[0] * tumor_image_input.shape[1] - 1)
+
+        return util.occlude_image(tumor_image_input, rand_occlusion, self.occlusion_size)
+
+
 class OccludedImageGenerator(Dataset):
-    """
-
-    """
-    def __init__(self, ref_image_path, occlusion_size=10, stride=1, input_size=(256, 256), reshape_input=True):
+    def __init__(self, ref_image_path, occlusion_size=(50, 50), reshape_input=True, reshape_input_size=(256, 256)):
         self.ref_image_path = ref_image_path
-        self.input_size = input_size
         self.reshape_input = reshape_input
+        self.occlusion_size = occlusion_size
 
-        input_transforms = [transforms.ToTensor()]
-        if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
+        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=3)]
+        if self.reshape_input: input_transforms.insert(0, transforms.Resize(reshape_input_size))
+        input_filter = transforms.Compose(input_transforms)
 
         with Image.open(ref_image_path) as tumor_image:
-            self.ref_image = input_transforms(tumor_image)
+            self.ref_image = input_filter(tumor_image)
 
-        self._form_occlusions()
-
-    def _form_occlusions(self):
-        with Image.open(self.ref_image) as tumor_image:
-            tumor_image_input = self._input_transforms(tumor_image)
-
-        # TODO: Sequentially form occlusions (according to stride and size) and save to images and pos correspondingly
-        self.images = None
-        self.pos = None
-
-    def get_ref_image(self):
+    def get_image(self):
         return self.ref_image
 
     def __len__(self):
-        return len(self.images)
+        return self.ref_image.shape[1] * self.ref_image.shape[2]
 
     def __getitem__(self, idx):
-        return self.pos[idx], self.images[idx]
+        image = torch.clone(self.ref_image)
+        util.occlude_image(image, idx, occlusion_size=self.occlusion_size)
+
+        return idx, image
