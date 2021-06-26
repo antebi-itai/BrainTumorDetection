@@ -1,0 +1,8 @@
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(12)train()
+     10         for images, tumor_types in loader:
+     11             images, tumor_types = images.to(device=device), tumor_types.to(device=device)
+---> 12             # Run the model on the input batch
+     13             pred_tumors_scores = model(images)
+     14
+
+  0%|          | 0/3 [00:03<?, ?it/s]

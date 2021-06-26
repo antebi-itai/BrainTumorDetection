@@ -1,0 +1,903 @@
+2021-06-26 18:59:51,111 INFO    MainThread:56604 [internal.py:wandb_internal():88] W&B internal server running at pid: 56604, started at: 2021-06-26 18:59:51.110614
+2021-06-26 18:59:51,113 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: check_version
+2021-06-26 18:59:51,113 INFO    WriterThread:56604 [datastore.py:open_for_write():80] open: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/run-rson1hte.wandb
+2021-06-26 18:59:51,116 DEBUG   SenderThread:56604 [sender.py:send():179] send: header
+2021-06-26 18:59:51,116 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: check_version
+2021-06-26 18:59:51,373 DEBUG   SenderThread:56604 [sender.py:send():179] send: run
+2021-06-26 18:59:51,720 INFO    SenderThread:56604 [dir_watcher.py:__init__():168] watching files in: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files
+2021-06-26 18:59:51,720 INFO    SenderThread:56604 [sender.py:_start_run_threads():704] run started: rson1hte with start time 1624723190
+2021-06-26 18:59:51,722 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 18:59:51,723 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 18:59:51,724 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: run_start
+2021-06-26 18:59:52,722 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 18:59:54,377 DEBUG   HandlerThread:56604 [meta.py:__init__():39] meta init
+2021-06-26 18:59:54,377 DEBUG   HandlerThread:56604 [meta.py:__init__():53] meta init done
+2021-06-26 18:59:54,377 DEBUG   HandlerThread:56604 [meta.py:probe():210] probe
+2021-06-26 18:59:54,384 DEBUG   HandlerThread:56604 [meta.py:_save_pip():57] save pip
+2021-06-26 18:59:54,385 DEBUG   HandlerThread:56604 [meta.py:_save_pip():71] save pip done
+2021-06-26 18:59:54,386 DEBUG   HandlerThread:56604 [meta.py:_save_conda():78] save conda
+2021-06-26 18:59:54,722 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/conda-environment.yaml
+2021-06-26 18:59:54,723 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/requirements.txt
+2021-06-26 18:59:57,724 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/output.log
+2021-06-26 18:59:58,600 DEBUG   HandlerThread:56604 [meta.py:_save_conda():86] save conda done
+2021-06-26 18:59:58,601 DEBUG   HandlerThread:56604 [meta.py:probe():252] probe done
+2021-06-26 18:59:58,606 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-26 18:59:58,610 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: stop_status
+2021-06-26 18:59:58,724 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/conda-environment.yaml
+2021-06-26 18:59:58,725 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-metadata.json
+2021-06-26 18:59:58,939 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 18:59:58,939 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 18:59:58,943 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 18:59:58,943 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 18:59:58,944 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 18:59:58,945 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 18:59:58,945 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 18:59:58,945 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 18:59:58,946 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 18:59:58,946 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 18:59:58,946 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 18:59:58,947 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 18:59:58,947 DEBUG   SenderThread:56604 [sender.py:send():179] send: files
+2021-06-26 18:59:58,947 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-metadata.json with policy now
+2021-06-26 18:59:59,725 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/output.log
+2021-06-26 18:59:59,725 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 18:59:59,777 INFO    Thread-11 :56604 [upload_job.py:push():133] Uploaded file /tmp/tmp0gqqvbw5wandb/stljgu88-wandb-metadata.json
+2021-06-26 19:00:00,162 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:00,164 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:00,164 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:00,164 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:00,165 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:00,165 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:00,165 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:00,166 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:00,166 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:00,166 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:00,166 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:00,167 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:00,726 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:01,633 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:01,634 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:01,636 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:01,636 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:01,636 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:01,637 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:01,637 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:01,637 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:01,638 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:01,638 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:01,638 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:01,639 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:01,726 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:02,530 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:02,531 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:02,532 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:02,532 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:02,533 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:02,533 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:02,533 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:02,534 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:02,534 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:02,534 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:02,534 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:02,535 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:02,727 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:03,576 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:03,577 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:03,579 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:03,579 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:03,579 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:03,579 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:03,580 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:03,580 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:03,580 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:03,580 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:03,581 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:03,581 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:03,728 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:04,662 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:04,663 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:04,668 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:04,668 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:04,668 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:04,669 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:04,669 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:04,669 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:04,670 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:04,670 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:04,670 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:04,671 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:04,728 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:05,742 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:05,743 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:05,744 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:05,745 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:05,745 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:05,745 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:05,745 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:05,745 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:05,746 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:05,746 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:05,746 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:05,747 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:06,730 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:06,791 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:06,792 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:06,796 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:06,796 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:06,797 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:06,797 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:06,797 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:06,797 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:06,798 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:06,798 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:06,798 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:06,799 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:07,730 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:07,879 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:07,881 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:07,882 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:07,882 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:07,882 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:07,883 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:07,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:07,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:07,883 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:07,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:07,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:07,884 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:08,731 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:08,922 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:08,924 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:08,926 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:08,927 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:08,927 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:08,927 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:08,927 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:08,927 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:08,928 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:08,928 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:08,928 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:08,929 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:09,736 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:10,197 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:10,197 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:10,198 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:10,198 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:10,198 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:10,199 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:10,199 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:10,199 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:10,199 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:10,200 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:10,200 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:10,200 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:10,735 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:11,520 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:11,521 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:11,523 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:11,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:11,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:11,524 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:11,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:11,525 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:11,525 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:11,525 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:11,525 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:11,526 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:11,739 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:12,536 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:12,537 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:12,538 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:12,539 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:12,539 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:12,540 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:12,540 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:12,540 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:12,541 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:12,541 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:12,541 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:12,542 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:12,741 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:13,578 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:13,579 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:13,583 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:13,584 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:13,584 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:13,585 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:13,585 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:13,585 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:13,585 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:13,586 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:13,586 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:13,586 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:13,742 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:13,943 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-26 19:00:13,943 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: stop_status
+2021-06-26 19:00:14,381 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:14,382 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:14,383 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:14,383 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:14,383 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:14,383 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:14,384 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:14,384 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:14,384 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:14,384 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:14,385 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:14,385 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:14,743 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:15,153 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,154 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,155 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,155 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,155 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,155 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,155 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,156 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,156 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,156 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,156 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,157 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,744 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:15,949 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,949 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,953 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,953 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,953 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,953 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,953 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,954 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,954 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:15,954 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:15,954 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:15,955 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:16,715 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:16,716 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:16,716 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:16,717 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:16,717 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:16,717 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:16,718 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:16,718 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:16,718 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:16,718 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:16,719 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:16,719 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:16,744 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:17,522 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:17,522 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:17,523 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:17,523 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:17,523 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:17,524 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:17,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:17,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:17,524 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:17,525 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:17,525 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:17,525 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:17,745 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:18,281 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:18,281 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:18,285 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:18,285 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:18,285 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:18,285 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:18,286 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:18,286 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:18,286 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:18,286 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:18,286 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:18,287 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:18,745 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:19,050 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,050 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,051 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,051 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,051 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,052 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,052 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,052 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,052 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,053 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,053 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,053 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,746 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:19,823 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,823 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,824 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,824 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,824 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,825 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,825 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,825 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,825 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:19,826 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:19,826 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:19,826 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:20,747 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:20,842 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:20,843 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:20,848 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:20,848 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:20,848 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:20,849 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:20,849 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:20,849 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:20,850 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:20,850 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:20,850 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:20,851 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:21,748 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:21,880 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:21,882 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:21,882 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:21,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:21,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:21,883 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:21,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:21,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:21,884 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:21,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:21,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:21,885 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:22,749 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:22,879 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:22,880 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:22,882 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:22,882 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:22,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:22,883 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:22,883 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:22,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:22,884 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:22,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:22,884 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:22,885 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:23,181 DEBUG   SenderThread:56604 [sender.py:send():179] send: stats
+2021-06-26 19:00:23,749 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:23,871 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:23,872 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:23,992 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:23,993 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:23,993 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,003 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:24,003 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:24,003 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,021 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:24,022 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:24,022 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,026 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:24,750 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:24,817 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:24,817 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,818 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:24,818 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:24,818 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,818 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:24,818 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:24,819 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,819 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:24,819 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:24,819 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:24,820 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:25,751 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:25,804 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:25,805 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:25,808 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:25,808 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:25,808 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:25,809 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:25,809 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:25,809 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:25,809 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:25,810 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:25,810 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:25,810 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:26,554 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:26,556 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:26,556 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:26,557 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:26,557 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:26,557 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:26,558 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:26,558 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:26,558 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:26,566 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:26,566 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:26,567 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:26,751 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:27,587 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:27,589 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:27,590 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:27,590 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:27,590 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:27,591 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:27,591 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:27,591 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:27,592 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:27,592 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:27,592 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:27,592 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:27,756 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/output.log
+2021-06-26 19:00:27,756 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:28,602 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:28,603 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:28,606 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:28,606 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:28,607 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:28,607 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:28,607 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:28,607 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:28,608 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:28,608 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:28,608 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:28,608 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:28,764 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:29,278 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-26 19:00:29,278 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: stop_status
+2021-06-26 19:00:29,665 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:29,666 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:29,668 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:29,668 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:29,668 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:29,669 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:29,669 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:29,669 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:29,669 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:29,670 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:29,670 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:29,670 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:29,767 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:30,811 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:30,812 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:30,815 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:30,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:30,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:30,816 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:30,816 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:30,816 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:30,816 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:30,817 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:30,817 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:30,817 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:31,768 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:31,812 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:31,812 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:31,813 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:31,813 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:31,813 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:31,814 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:31,814 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:31,814 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:31,815 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:31,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:31,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:31,815 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:32,769 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:32,771 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:32,772 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:32,774 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:32,774 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:32,774 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:32,775 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:32,775 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:32,775 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:32,775 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:32,776 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:32,776 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:32,776 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:33,769 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:33,780 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:33,781 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:33,784 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:33,784 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:33,785 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:33,785 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:33,785 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:33,785 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:33,786 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:33,786 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:33,786 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:33,786 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:34,770 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:34,773 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:34,773 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:34,775 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:34,775 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:34,776 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:34,776 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:34,776 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:34,776 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:34,777 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:34,777 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:34,777 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:34,778 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:35,770 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:35,809 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:35,810 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:35,813 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:35,814 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:35,814 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:35,814 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:35,814 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:35,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:35,815 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:35,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:35,815 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:35,816 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:36,771 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:36,780 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:36,780 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:36,781 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:36,782 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:36,782 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:36,782 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:36,782 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:36,783 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:36,783 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:36,783 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:36,783 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:36,784 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:37,772 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:37,828 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:37,829 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:37,832 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:37,833 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:37,833 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:37,833 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:37,833 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:37,833 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:37,834 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:37,834 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:37,834 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:37,834 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:38,773 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:38,900 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:38,900 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:38,900 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:38,901 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:38,901 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:38,901 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:38,902 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:38,902 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:38,902 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:38,903 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:38,903 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:38,903 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:39,773 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:39,914 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:39,915 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:39,918 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:39,918 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:39,919 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:39,919 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:39,919 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:39,919 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:39,920 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:39,920 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:39,920 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:39,920 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:40,774 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:40,962 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:40,963 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:40,965 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:40,965 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:40,965 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:40,966 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:40,966 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:40,966 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:40,966 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:40,967 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:40,967 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:40,967 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:41,775 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:42,036 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:42,036 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:42,038 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:42,038 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:42,039 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:42,039 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:42,039 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:42,039 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:42,040 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:42,040 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:42,040 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:42,040 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:42,775 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:43,030 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:43,030 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:43,031 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:43,031 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:43,031 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:43,032 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:43,032 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:43,032 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:43,032 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:43,032 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:43,033 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:43,033 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:44,608 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-26 19:00:46,782 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: stop_status
+2021-06-26 19:00:46,787 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:50,965 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:50,967 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:50,968 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:50,968 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:50,969 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:50,969 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:50,969 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:50,970 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:50,970 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:50,971 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:50,971 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:50,971 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:51,073 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:51,937 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:57,307 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:57,310 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:57,310 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:57,310 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:57,311 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:57,311 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:57,311 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:57,312 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:57,312 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:57,312 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:57,313 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:57,313 DEBUG   SenderThread:56604 [sender.py:send():179] send: stats
+2021-06-26 19:00:57,380 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:58,346 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:58,346 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:58,347 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:58,347 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:58,347 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:58,347 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:58,348 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:58,348 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:58,348 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:58,348 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:58,348 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:58,349 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:58,380 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:00:59,365 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:59,365 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:59,365 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:59,366 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:59,366 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:59,366 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:59,366 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:59,367 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:59,367 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:59,367 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:00:59,367 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:00:59,368 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:00:59,373 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:00,411 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:00,412 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:00,412 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:00,413 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:00,413 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:00,413 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:00,413 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:00,414 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:00,414 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:00,414 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:00,414 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:00,415 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:01,365 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:01,367 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:01,368 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:01,368 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:01,368 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:01,369 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:01,369 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:01,369 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:01,370 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:01,370 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:01,370 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:01,371 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:01,374 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:02,116 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-26 19:01:02,116 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: stop_status
+2021-06-26 19:01:02,442 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:02,442 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:02,443 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:02,443 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:02,444 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:02,444 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:02,444 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:02,445 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:02,445 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:02,445 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:02,446 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:02,446 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:03,375 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:03,383 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:03,384 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:03,384 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:03,384 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:03,385 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:03,385 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:03,385 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:03,385 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:03,386 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:03,386 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:03,386 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:03,387 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:04,376 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:04,476 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:04,476 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:04,477 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:04,477 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:04,477 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:04,478 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:04,478 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:04,478 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:04,479 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:04,479 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:04,479 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:04,479 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:05,377 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:05,521 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:05,521 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:05,522 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:05,522 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:05,522 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:05,522 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:05,522 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:05,523 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:05,523 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:05,523 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:05,523 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:05,524 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:06,378 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:06,560 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:06,560 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:06,562 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:06,562 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:06,562 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:06,563 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:06,563 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:06,563 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:06,564 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:06,564 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:06,564 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:06,564 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:07,379 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:07,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:07,524 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:07,527 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:07,527 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:07,528 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:07,528 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:07,528 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:07,529 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:07,529 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:07,529 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:07,529 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:07,530 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:08,221 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:08,223 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:08,225 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:08,225 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:08,225 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:08,226 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:08,226 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:08,226 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:08,226 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:08,227 DEBUG   SenderThread:56604 [sender.py:send():179] send: history
+2021-06-26 19:01:08,227 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:08,227 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:08,380 INFO    Thread-8  :56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:08,677 DEBUG   SenderThread:56604 [sender.py:send():179] send: telemetry
+2021-06-26 19:01:08,677 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:08,677 DEBUG   SenderThread:56604 [sender.py:send():179] send: exit
+2021-06-26 19:01:08,677 INFO    SenderThread:56604 [sender.py:send_exit():287] handling exit code: 0
+2021-06-26 19:01:08,678 INFO    SenderThread:56604 [sender.py:send_exit():295] send defer
+2021-06-26 19:01:08,678 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:08,678 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:08,678 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 0
+2021-06-26 19:01:08,679 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:08,679 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 0
+2021-06-26 19:01:08,679 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 1
+2021-06-26 19:01:08,679 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:08,679 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 1
+2021-06-26 19:01:08,788 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:08,788 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:08,788 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 1
+2021-06-26 19:01:08,788 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 2
+2021-06-26 19:01:08,789 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:08,789 DEBUG   SenderThread:56604 [sender.py:send():179] send: stats
+2021-06-26 19:01:08,789 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:08,789 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 2
+2021-06-26 19:01:08,790 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:08,790 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 2
+2021-06-26 19:01:08,790 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 3
+2021-06-26 19:01:08,790 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:08,790 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 3
+2021-06-26 19:01:08,790 DEBUG   SenderThread:56604 [sender.py:send():179] send: summary
+2021-06-26 19:01:08,791 INFO    SenderThread:56604 [sender.py:_save_file():829] saving file wandb-summary.json with policy end
+2021-06-26 19:01:08,791 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:08,791 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 3
+2021-06-26 19:01:08,791 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 4
+2021-06-26 19:01:08,791 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:08,791 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 4
+2021-06-26 19:01:08,792 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:08,792 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 4
+2021-06-26 19:01:08,890 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:09,133 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 5
+2021-06-26 19:01:09,133 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:09,134 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:09,134 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 5
+2021-06-26 19:01:09,134 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:09,134 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 5
+2021-06-26 19:01:09,134 INFO    SenderThread:56604 [dir_watcher.py:finish():282] shutting down directory watcher
+2021-06-26 19:01:09,235 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:09,381 INFO    SenderThread:56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/output.log
+2021-06-26 19:01:09,381 INFO    SenderThread:56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:09,381 INFO    SenderThread:56604 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/config.yaml
+2021-06-26 19:01:09,382 INFO    SenderThread:56604 [dir_watcher.py:finish():312] scan: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files
+2021-06-26 19:01:09,382 INFO    SenderThread:56604 [dir_watcher.py:finish():318] scan save: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/conda-environment.yaml conda-environment.yaml
+2021-06-26 19:01:09,382 INFO    SenderThread:56604 [dir_watcher.py:finish():318] scan save: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-metadata.json wandb-metadata.json
+2021-06-26 19:01:09,382 INFO    SenderThread:56604 [dir_watcher.py:finish():318] scan save: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/config.yaml config.yaml
+2021-06-26 19:01:09,386 INFO    SenderThread:56604 [dir_watcher.py:finish():318] scan save: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/requirements.txt requirements.txt
+2021-06-26 19:01:09,389 INFO    SenderThread:56604 [dir_watcher.py:finish():318] scan save: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json wandb-summary.json
+2021-06-26 19:01:09,394 INFO    SenderThread:56604 [dir_watcher.py:finish():318] scan save: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/output.log output.log
+2021-06-26 19:01:09,397 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 6
+2021-06-26 19:01:09,397 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:09,398 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:09,402 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 6
+2021-06-26 19:01:09,402 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:09,402 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 6
+2021-06-26 19:01:09,402 INFO    SenderThread:56604 [file_pusher.py:finish():176] shutting down file pusher
+2021-06-26 19:01:09,403 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 7
+2021-06-26 19:01:09,403 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:09,403 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 7
+2021-06-26 19:01:09,403 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:09,403 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 7
+2021-06-26 19:01:09,501 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:09,797 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 8
+2021-06-26 19:01:09,797 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:09,798 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:09,798 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 8
+2021-06-26 19:01:09,798 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:09,798 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 8
+2021-06-26 19:01:09,798 INFO    SenderThread:56604 [sender.py:send_request_defer():342] send defer: 9
+2021-06-26 19:01:09,799 DEBUG   SenderThread:56604 [sender.py:send():179] send: final
+2021-06-26 19:01:09,799 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: defer
+2021-06-26 19:01:09,799 DEBUG   SenderThread:56604 [sender.py:send():179] send: footer
+2021-06-26 19:01:09,799 INFO    HandlerThread:56604 [handler.py:handle_request_defer():141] handle defer: 9
+2021-06-26 19:01:09,800 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: defer
+2021-06-26 19:01:09,800 INFO    SenderThread:56604 [sender.py:send_request_defer():304] handle sender defer: 9
+2021-06-26 19:01:09,899 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:09,900 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,002 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,002 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,105 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,105 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,207 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,207 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,237 INFO    Thread-13 :56604 [upload_job.py:push():133] Uploaded file /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/config.yaml
+2021-06-26 19:01:10,265 INFO    Thread-15 :56604 [upload_job.py:push():133] Uploaded file /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/wandb-summary.json
+2021-06-26 19:01:10,294 INFO    Thread-12 :56604 [upload_job.py:push():133] Uploaded file /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/conda-environment.yaml
+2021-06-26 19:01:10,309 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,309 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,317 INFO    Thread-16 :56604 [upload_job.py:push():133] Uploaded file /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/output.log
+2021-06-26 19:01:10,342 INFO    Thread-14 :56604 [upload_job.py:push():133] Uploaded file /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/files/requirements.txt
+2021-06-26 19:01:10,411 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,411 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,512 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,513 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,614 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-26 19:01:10,614 DEBUG   SenderThread:56604 [sender.py:send_request():193] send_request: poll_exit
+2021-06-26 19:01:10,614 INFO    SenderThread:56604 [file_pusher.py:join():181] waiting for file pusher
+2021-06-26 19:01:10,615 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: get_summary
+2021-06-26 19:01:10,616 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: sampled_history
+2021-06-26 19:01:10,618 DEBUG   HandlerThread:56604 [handler.py:handle_request():124] handle_request: shutdown
+2021-06-26 19:01:10,618 INFO    HandlerThread:56604 [handler.py:finish():638] shutting down handler
+2021-06-26 19:01:10,799 INFO    WriterThread:56604 [datastore.py:close():288] close: /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210626_185950-rson1hte/run-rson1hte.wandb
+2021-06-26 19:01:11,614 INFO    SenderThread:56604 [sender.py:finish():933] shutting down sender
+2021-06-26 19:01:11,615 INFO    SenderThread:56604 [file_pusher.py:finish():176] shutting down file pusher
+2021-06-26 19:01:11,615 INFO    SenderThread:56604 [file_pusher.py:join():181] waiting for file pusher
+2021-06-26 19:01:11,616 INFO    MainThread:56604 [internal.py:handle_exit():78] Internal process exited
