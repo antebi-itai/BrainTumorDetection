@@ -39,7 +39,7 @@ class DataGenerator(Dataset):
         assert all([tumor_dir.endswith("_tumor") for tumor_dir in self.tumor_dirs])
 
         # define transforms
-        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=3)]
+        input_transforms = [transforms.Grayscale(num_output_channels=3), transforms.ToTensor()]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
         self._input_transforms = transforms.Compose(input_transforms)
         self._vis_transforms = transforms.Compose([
@@ -107,7 +107,7 @@ class OccludedImageGenerator(Dataset):
         self.reshape_input = reshape_input
         self.occlusion_size = occlusion_size
 
-        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=3)]
+        input_transforms = [transforms.Grayscale(num_output_channels=3), transforms.ToTensor()]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(reshape_input_size))
         input_filter = transforms.Compose(input_transforms)
 

@@ -24,8 +24,8 @@ class Experiment:
         self.train_dataset = DataGenerator(self.data_train_path)
         weights = self.train_dataset.make_weights_for_balanced_classes()
         sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
-        self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.batch_size, shuffle=True)
-        self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset, batch_size=self.batch_size, sampler=sampler)
+        self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
+        self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset, batch_size=self.train_batch_size, sampler=sampler)
         self.model = get_model(self.model_name).to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
 
@@ -42,7 +42,7 @@ class Experiment:
     """
     def generate_heatmap(self, image_path):
         occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path, occlusion_size=self.occlusion_size),
-                                                      batch_size=self.batch_size, shuffle=False)
+                                                      batch_size=self.heatmap_batch_size, shuffle=False)
 
         # Start extracting features
         fe = FeatureExtractor(model=self.model, device=self.device)
@@ -69,4 +69,5 @@ class Experiment:
           self.model(occluded_images)
 
         features = fe.flush_activations()
-        return torch.cat(features).reshape(original_image.shape)
+        # TODO: NO L2C55 !!!
+        return torch.cat(features['L2C55']).reshape(original_image.shape)
