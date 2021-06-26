@@ -37,7 +37,7 @@ class DataGenerator(Dataset):
         assert all([tumor_dir.endswith("_tumor") for tumor_dir in self.tumor_dirs])
 
         # define transforms
-        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=1)]
+        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=3)]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
         self._input_transforms = transforms.Compose(input_transforms)
         self._vis_transforms = transforms.Compose([
@@ -69,7 +69,7 @@ class DataGenerator(Dataset):
         tumor_label = self.tumor_types[idx]
         tumor_image_path = self.tumor_image_paths[idx]
         with Image.open(tumor_image_path) as tumor_image:
-            tumor_image_input = self._input_transforms(tumor_image).squeeze()
+            tumor_image_input = self._input_transforms(tumor_image)
         return tumor_image_input, tumor_label
 
 
@@ -91,22 +91,21 @@ class OccludedImageGenerator(Dataset):
         self.reshape_input = reshape_input
         self.occlusion_size = occlusion_size
 
-        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=1)]
+        input_transforms = [transforms.ToTensor(), transforms.Grayscale(num_output_channels=3)]
         if self.reshape_input: input_transforms.insert(0, transforms.Resize(reshape_input_size))
         input_filter = transforms.Compose(input_transforms)
 
         with Image.open(ref_image_path) as tumor_image:
-            self.ref_image = input_filter(tumor_image).squeeze()
+            self.ref_image = input_filter(tumor_image)
 
     def get_image(self):
         return self.ref_image
 
     def __len__(self):
-        return self.ref_image.shape[0] * self.ref_image.shape[1]
+        return self.ref_image.shape[1] * self.ref_image.shape[2]
 
     def __getitem__(self, idx):
         image = torch.clone(self.ref_image)
         util.occlude_image(image, idx, occlusion_size=self.occlusion_size)
-        pt = torch.tensor(util.idx2coords(idx, image))
 
-        return pt, image
+        return idx, image

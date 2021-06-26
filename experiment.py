@@ -36,39 +36,32 @@ class Experiment:
     TODO: Doc
     """
     def generate_heatmap(self, image_path):
-        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path,
-                                                                             occlusion_size=self.occlusion_size),
-                                                      batch_size=self.batch_size, shuffle=self.shuffle_data)
+        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path, occlusion_size=self.occlusion_size),
+                                                      batch_size=self.batch_size, shuffle=False)
 
         # Start extracting features
-        fe = FeatureExtractor(model=self.model, layers=[1], device=self.device)
-        fe.plug()
+        fe = FeatureExtractor(model=self.model, device=self.device)
+        
+        for heat_layer in self.heat_layers:
+          fe.plug_layer(heat_layer)
 
-        # Forward pass over reference image & Flag (per layer) the `ref_channel` as the channel with max value
-        ref_channel = {}
-        import pdb; pdb.set_trace() #TODO: Problem here is it expects image with 3 channels, however our's greyscale
-        self.model(occluded_loader.dataset.get_image().unsqueeze(0).unsqueeze(0))
-        features = fe.flush_features()
+        # Forward pass over original image & Plug the channel with max value
+        original_image = occluded_loader.dataset.get_image().to(self.device).unsqueeze(0)
+        self.model(original_image)
+        
+        feature_layers = fe.flush_layers()
 
-        for layer, feature_layer in features:
-            # TODO: change 2,3 to right dims
-            ref_channel[layer] = torch.amax(torch.sum(feature_layer[layer][0], dim=[2, 3]))  # Sum over spatial dimensions
-
-        # Forward pass over all images with occlusions & Generate corresponding heatmaps
-        pts = self._inference(occluded_loader)
-        features = fe.flush_features()
-
-        # features should be a dict of layers. Each such element is a list of the layer's features when a
-        # forward pass on the (x,y) occluded image was done.
-        # The order should correspond to the list of occluded image centers given by self._inference (pts)
-        for feature_layer_batch in features:
-            for (x, y), feature_layer in zip(pts, feature_layer_batch):
-                # perform sum over spatial dimensions on corresponding `max-channel`
-                channel = ref_channel[layer]
-                # TODO: change 2,3 to right dims
-                # TODO: Batch indices and layers indices would be tricky. Need to figure it out and fix it.
-                heatmap[layer][x][y] = torch.sum(feature_layer[channel], dim=[2,3])
-
-        # TODO: Draw the heatmaps per each layer
-
-        fe.unplug()
+        for layer, feature_layer in feature_layers.items():
+          # Set the most 'activated channel' as reference
+          channel = torch.argmax(torch.sum(feature_layer, dim=(2,3))).item()  # Sum over spatial dimensions
+          fe.plug_activation(layer, channel)
+        
+        # Gather heatmap - forward pass over all occlusioned images & generate corresponding heatmaps
+        heatmap = []
+        for idx, images in occluded_loader:
+          occluded_images = images.to(device=self.device)
+          # Run the model on batched occluded images
+          self.model(occluded_images)
+        
+        features = fe.flush_activations()
+        return torch.cat(features).reshape(original_image.shape)
