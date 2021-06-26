@@ -26,6 +26,8 @@ class DataGenerator(Dataset):
     tumor_type2name   - dictionary mapping type of tumor (integer) to tumor's scientific name.
     tumor_name2type   - dictionary mapping tumor's scientific name to type of tumor (integer).
     """
+    tumor_type2name = {0: "no", 1: "yes"}
+    tumor_name2type = {"no": 0, "yes": 1}
 
     def __init__(self, data_dir, input_size=(256, 256), reshape_input=True):
         self.data_dir = data_dir
@@ -46,13 +48,10 @@ class DataGenerator(Dataset):
         # parse data from directory to convenient data structures
         self.tumor_image_paths = []
         self.tumor_types = []
-        self.tumor_type2name = {}
-        self.tumor_name2type = {}
-        for tumor_type, tumor_dir in enumerate(self.tumor_dirs):
-            # add tumor name to type2name dict
+        for tumor_dir in self.tumor_dirs:
             tumor_name = tumor_dir.replace("_tumor", "")
-            self.tumor_type2name[tumor_type] = tumor_name
-            self.tumor_name2type[tumor_name] = tumor_type
+            if tumor_name != "no": tumor_name = "yes"
+            tumor_type = self.tumor_name2type[tumor_name]
             # add tumor image paths and types to lists
             tumor_image_paths = [os.path.join(self.data_dir, tumor_dir, file_name)
                                  for file_name in os.listdir(os.path.join(self.data_dir, tumor_dir))]

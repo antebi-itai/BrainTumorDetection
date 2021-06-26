@@ -22,8 +22,7 @@ class Experiment:
         self.accuracy = accuracy
         self.loader = torch.utils.data.DataLoader(DataGenerator(self.data_train_path),
                                                   batch_size=self.batch_size, shuffle=self.shuffle_data)
-        assert self.num_classes in [2, len(self.loader.dataset.tumor_type2name)]
-        self.model = VGGNet(vgg_version=self.vgg_version, num_classes=self.num_classes).to(self.device)
+        self.model = VGGNet(vgg_version=self.vgg_version).to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
 
     """
