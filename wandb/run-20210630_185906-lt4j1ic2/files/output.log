@@ -1,0 +1,190 @@
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(68)generate_heatmap()
+     66         for idx, images in occluded_loader:
+     67           import pdb; pdb.set_trace()
+---> 68           occluded_images = images.to(device=self.device)
+     69           # Run the model on batched occluded images
+     70           self.model(occluded_images)
+*** AttributeError: module 'torch' has no attribute 'memory_summary'
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |    1149 MB |    1240 MB |    2022 MB |     873 MB |
+|       from large pool |    1144 MB |    1231 MB |    1998 MB |     853 MB |
+|       from small pool |       4 MB |       9 MB |      24 MB |      19 MB |
+|---------------------------------------------------------------------------|
+| Active memory         |    1149 MB |    1240 MB |    2022 MB |     873 MB |
+|       from large pool |    1144 MB |    1231 MB |    1998 MB |     853 MB |
+|       from small pool |       4 MB |       9 MB |      24 MB |      19 MB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |    1268 MB |    1268 MB |    1268 MB |       0 B  |
+|       from large pool |    1258 MB |    1258 MB |    1258 MB |       0 B  |
+|       from small pool |      10 MB |      10 MB |      10 MB |       0 B  |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   29668 KB |   47076 KB |  534959 KB |  505290 KB |
+|       from large pool |   28032 KB |   45440 KB |  503043 KB |  475011 KB |
+|       from small pool |    1636 KB |    2226 KB |   31916 KB |   30279 KB |
+|---------------------------------------------------------------------------|
+| Allocations           |      85    |     117    |     234    |     149    |
+|       from large pool |      33    |      49    |     118    |      85    |
+|       from small pool |      52    |      69    |     116    |      64    |
+|---------------------------------------------------------------------------|
+| Active allocs         |      85    |     117    |     234    |     149    |
+|       from large pool |      33    |      49    |     118    |      85    |
+|       from small pool |      52    |      69    |     116    |      64    |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |      26    |      26    |      26    |       0    |
+|       from large pool |      21    |      21    |      21    |       0    |
+|       from small pool |       5    |       5    |       5    |       0    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |      11    |      12    |      72    |      61    |
+|       from large pool |       8    |       9    |      45    |      37    |
+|       from small pool |       3    |       5    |      27    |      24    |
+|===========================================================================|
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(67)generate_heatmap()
+     65         heatmap = []
+     66         for idx, images in occluded_loader:
+---> 67           import pdb; pdb.set_trace()
+     68           occluded_images = images.to(device=self.device)
+     69           # Run the model on batched occluded images
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |    1149 MB |    1272 MB |    2340 MB |    1190 MB |
+|       from large pool |    1144 MB |    1263 MB |    2309 MB |    1164 MB |
+|       from small pool |       5 MB |      10 MB |      31 MB |      26 MB |
+|---------------------------------------------------------------------------|
+| Active memory         |    1149 MB |    1272 MB |    2340 MB |    1190 MB |
+|       from large pool |    1144 MB |    1263 MB |    2309 MB |    1164 MB |
+|       from small pool |       5 MB |      10 MB |      31 MB |      26 MB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |    1296 MB |    1296 MB |    1296 MB |       0 B  |
+|       from large pool |    1284 MB |    1284 MB |    1284 MB |       0 B  |
+|       from small pool |      12 MB |      12 MB |      12 MB |       0 B  |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   28900 KB |   47076 KB |  688206 KB |  659305 KB |
+|       from large pool |   28032 KB |   45440 KB |  646535 KB |  618503 KB |
+|       from small pool |     868 KB |    2226 KB |   41671 KB |   40802 KB |
+|---------------------------------------------------------------------------|
+| Allocations           |      86    |     120    |     285    |     199    |
+|       from large pool |      33    |      51    |     148    |     115    |
+|       from small pool |      53    |      70    |     137    |      84    |
+|---------------------------------------------------------------------------|
+| Active allocs         |      86    |     120    |     285    |     199    |
+|       from large pool |      33    |      51    |     148    |     115    |
+|       from small pool |      53    |      70    |     137    |      84    |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |      28    |      28    |      28    |       0    |
+|       from large pool |      22    |      22    |      22    |       0    |
+|       from small pool |       6    |       6    |       6    |       0    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |      11    |      13    |      96    |      85    |
+|       from large pool |       8    |      10    |      60    |      52    |
+|       from small pool |       3    |       5    |      36    |      33    |
+|===========================================================================|
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(68)generate_heatmap()
+     66         for idx, images in occluded_loader:
+     67           import pdb; pdb.set_trace()
+---> 68           occluded_images = images.to(device=self.device)
+     69           # Run the model on batched occluded images
+     70           self.model(occluded_images)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |    1149 MB |    1273 MB |    2658 MB |    1508 MB |
+|       from large pool |    1144 MB |    1263 MB |    2619 MB |    1475 MB |
+|       from small pool |       5 MB |      10 MB |      38 MB |      33 MB |
+|---------------------------------------------------------------------------|
+| Active memory         |    1149 MB |    1273 MB |    2658 MB |    1508 MB |
+|       from large pool |    1144 MB |    1263 MB |    2619 MB |    1475 MB |
+|       from small pool |       5 MB |      10 MB |      38 MB |      33 MB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |    1296 MB |    1296 MB |    1296 MB |       0 B  |
+|       from large pool |    1284 MB |    1284 MB |    1284 MB |       0 B  |
+|       from small pool |      12 MB |      12 MB |      12 MB |       0 B  |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   30948 KB |   47076 KB |     821 MB |     791 MB |
+|       from large pool |   28032 KB |   45440 KB |     771 MB |     744 MB |
+|       from small pool |    2916 KB |    2916 KB |      50 MB |      47 MB |
+|---------------------------------------------------------------------------|
+| Allocations           |      86    |     121    |     336    |     250    |
+|       from large pool |      33    |      51    |     178    |     145    |
+|       from small pool |      53    |      71    |     158    |     105    |
+|---------------------------------------------------------------------------|
+| Active allocs         |      86    |     121    |     336    |     250    |
+|       from large pool |      33    |      51    |     178    |     145    |
+|       from small pool |      53    |      71    |     158    |     105    |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |      28    |      28    |      28    |       0    |
+|       from large pool |      22    |      22    |      22    |       0    |
+|       from small pool |       6    |       6    |       6    |       0    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |      12    |      14    |     117    |     105    |
+|       from large pool |       8    |      10    |      75    |      67    |
+|       from small pool |       4    |       5    |      42    |      38    |
+|===========================================================================|
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(67)generate_heatmap()
+     65         heatmap = []
+     66         for idx, images in occluded_loader:
+---> 67           import pdb; pdb.set_trace()
+     68           occluded_images = images.to(device=self.device)
+     69           # Run the model on batched occluded images
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |    1149 MB |    1273 MB |    2976 MB |    1826 MB |
+|       from large pool |    1144 MB |    1263 MB |    2930 MB |    1785 MB |
+|       from small pool |       5 MB |      10 MB |      46 MB |      41 MB |
+|---------------------------------------------------------------------------|
+| Active memory         |    1149 MB |    1273 MB |    2976 MB |    1826 MB |
+|       from large pool |    1144 MB |    1263 MB |    2930 MB |    1785 MB |
+|       from small pool |       5 MB |      10 MB |      46 MB |      41 MB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |    1296 MB |    1296 MB |    1296 MB |       0 B  |
+|       from large pool |    1284 MB |    1284 MB |    1284 MB |       0 B  |
+|       from small pool |      12 MB |      12 MB |      12 MB |       0 B  |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   28900 KB |   47076 KB |     969 MB |     941 MB |
+|       from large pool |   28032 KB |   45440 KB |     911 MB |     884 MB |
+|       from small pool |     868 KB |    2916 KB |      57 MB |      57 MB |
+|---------------------------------------------------------------------------|
+| Allocations           |      86    |     121    |     387    |     301    |
+|       from large pool |      33    |      51    |     208    |     175    |
+|       from small pool |      53    |      71    |     179    |     126    |
+|---------------------------------------------------------------------------|
+| Active allocs         |      86    |     121    |     387    |     301    |
+|       from large pool |      33    |      51    |     208    |     175    |
+|       from small pool |      53    |      71    |     179    |     126    |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |      28    |      28    |      28    |       0    |
+|       from large pool |      22    |      22    |      22    |       0    |
+|       from small pool |       6    |       6    |       6    |       0    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |      11    |      14    |     137    |     126    |
+|       from large pool |       8    |      10    |      90    |      82    |
+|       from small pool |       3    |       5    |      47    |      44    |
+|===========================================================================|
+--KeyboardInterrupt--
+KeyboardInterrupt: Interrupted by user
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(68)generate_heatmap()
+     66         for idx, images in occluded_loader:
+     67           import pdb; pdb.set_trace()
+---> 68           occluded_images = images.to(device=self.device)
+     69           # Run the model on batched occluded images
+     70           self.model(occluded_images)
+*** NameError: name 'exi' is not defined

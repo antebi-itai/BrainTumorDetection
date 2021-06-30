@@ -1,0 +1,231 @@
+2021-06-30 20:11:57,748 INFO    MainThread:50094 [internal.py:wandb_internal():88] W&B internal server running at pid: 50094, started at: 2021-06-30 20:11:57.746946
+2021-06-30 20:11:57,750 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: check_version
+2021-06-30 20:11:57,750 INFO    WriterThread:50094 [datastore.py:open_for_write():80] open: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/run-3kj0t3x6.wandb
+2021-06-30 20:11:57,752 DEBUG   SenderThread:50094 [sender.py:send():179] send: header
+2021-06-30 20:11:57,752 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: check_version
+2021-06-30 20:11:58,017 DEBUG   SenderThread:50094 [sender.py:send():179] send: run
+2021-06-30 20:11:58,370 INFO    SenderThread:50094 [dir_watcher.py:__init__():168] watching files in: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files
+2021-06-30 20:11:58,370 INFO    SenderThread:50094 [sender.py:_start_run_threads():716] run started: 3kj0t3x6 with start time 1625073116
+2021-06-30 20:11:58,370 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:11:58,371 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: run_start
+2021-06-30 20:11:58,372 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:11:58,376 DEBUG   HandlerThread:50094 [meta.py:__init__():39] meta init
+2021-06-30 20:11:58,376 DEBUG   HandlerThread:50094 [meta.py:__init__():53] meta init done
+2021-06-30 20:11:58,376 DEBUG   HandlerThread:50094 [meta.py:probe():210] probe
+2021-06-30 20:11:58,383 DEBUG   HandlerThread:50094 [meta.py:_save_pip():57] save pip
+2021-06-30 20:11:58,385 DEBUG   HandlerThread:50094 [meta.py:_save_pip():71] save pip done
+2021-06-30 20:11:58,385 DEBUG   HandlerThread:50094 [meta.py:_save_conda():78] save conda
+2021-06-30 20:11:59,372 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:11:59,373 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/requirements.txt
+2021-06-30 20:11:59,373 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/conda-environment.yaml
+2021-06-30 20:12:00,006 DEBUG   HandlerThread:50094 [meta.py:_save_conda():86] save conda done
+2021-06-30 20:12:00,007 DEBUG   HandlerThread:50094 [meta.py:probe():252] probe done
+2021-06-30 20:12:00,012 DEBUG   SenderThread:50094 [sender.py:send():179] send: files
+2021-06-30 20:12:00,013 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-metadata.json with policy now
+2021-06-30 20:12:00,018 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-30 20:12:00,019 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: stop_status
+2021-06-30 20:12:00,341 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:00,341 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:00,342 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:00,342 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:00,342 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:00,343 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:00,343 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:00,343 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:00,345 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:00,345 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:00,346 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:00,346 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:00,346 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:00,346 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:00,347 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:00,371 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:00,371 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/conda-environment.yaml
+2021-06-30 20:12:00,372 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-metadata.json
+2021-06-30 20:12:00,372 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_created():216] file/dir created: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:01,004 INFO    Thread-11 :50094 [upload_job.py:push():137] Uploaded file /tmp/tmpx95eo6rpwandb/1x9ogqi6-wandb-metadata.json
+2021-06-30 20:12:02,372 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:04,865 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:04,866 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:04,867 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:04,867 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:04,867 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:04,868 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:04,868 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:04,868 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:04,869 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:04,869 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:04,869 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:04,870 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:04,870 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:04,870 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:04,871 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:05,374 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:06,375 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:06,445 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:06,449 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:06,450 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:06,450 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:06,450 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:06,451 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:06,451 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:06,451 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:06,452 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:06,452 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:06,452 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:06,453 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:06,453 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:06,453 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:06,454 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:07,375 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:08,198 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:08,199 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:08,202 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:08,203 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:08,203 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:08,203 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:08,203 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:08,204 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:08,204 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:08,204 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:08,204 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:08,205 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:08,205 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:08,205 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:08,206 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:08,376 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:08,376 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:09,415 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:09,415 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:09,416 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:09,416 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:09,417 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:09,417 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:09,418 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:09,418 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:09,418 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:09,419 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:09,419 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:09,419 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:09,419 DEBUG   SenderThread:50094 [sender.py:send():179] send: history
+2021-06-30 20:12:09,420 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:09,420 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:10,377 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:10,377 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:15,342 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: stop_status
+2021-06-30 20:12:15,342 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: stop_status
+2021-06-30 20:12:21,141 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:21,142 DEBUG   SenderThread:50094 [sender.py:send():179] send: telemetry
+2021-06-30 20:12:21,142 DEBUG   SenderThread:50094 [sender.py:send():179] send: exit
+2021-06-30 20:12:21,142 INFO    SenderThread:50094 [sender.py:send_exit():287] handling exit code: 1
+2021-06-30 20:12:21,142 INFO    SenderThread:50094 [sender.py:send_exit():295] send defer
+2021-06-30 20:12:21,143 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:21,143 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:21,143 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 0
+2021-06-30 20:12:21,143 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:21,143 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 0
+2021-06-30 20:12:21,144 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 1
+2021-06-30 20:12:21,144 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:21,144 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 1
+2021-06-30 20:12:21,194 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:21,194 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 1
+2021-06-30 20:12:21,194 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 2
+2021-06-30 20:12:21,195 DEBUG   SenderThread:50094 [sender.py:send():179] send: stats
+2021-06-30 20:12:21,195 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:21,197 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 2
+2021-06-30 20:12:21,197 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:21,198 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 2
+2021-06-30 20:12:21,198 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 3
+2021-06-30 20:12:21,198 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:21,198 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 3
+2021-06-30 20:12:21,199 DEBUG   SenderThread:50094 [sender.py:send():179] send: summary
+2021-06-30 20:12:21,199 INFO    SenderThread:50094 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-06-30 20:12:21,199 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:21,200 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 3
+2021-06-30 20:12:21,200 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 4
+2021-06-30 20:12:21,200 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:21,200 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 4
+2021-06-30 20:12:21,200 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:21,200 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 4
+2021-06-30 20:12:21,248 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:21,383 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:21,383 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:21,546 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 5
+2021-06-30 20:12:21,547 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:21,547 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:21,547 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 5
+2021-06-30 20:12:21,547 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:21,548 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 5
+2021-06-30 20:12:21,548 INFO    SenderThread:50094 [dir_watcher.py:finish():282] shutting down directory watcher
+2021-06-30 20:12:21,649 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:22,383 INFO    Thread-8  :50094 [dir_watcher.py:_on_file_modified():229] file/dir modified: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/config.yaml
+2021-06-30 20:12:22,384 INFO    SenderThread:50094 [dir_watcher.py:finish():312] scan: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files
+2021-06-30 20:12:22,384 INFO    SenderThread:50094 [dir_watcher.py:finish():318] scan save: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/conda-environment.yaml conda-environment.yaml
+2021-06-30 20:12:22,385 INFO    SenderThread:50094 [dir_watcher.py:finish():318] scan save: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-metadata.json wandb-metadata.json
+2021-06-30 20:12:22,385 INFO    SenderThread:50094 [dir_watcher.py:finish():318] scan save: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/config.yaml config.yaml
+2021-06-30 20:12:22,388 INFO    SenderThread:50094 [dir_watcher.py:finish():318] scan save: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/requirements.txt requirements.txt
+2021-06-30 20:12:22,391 INFO    SenderThread:50094 [dir_watcher.py:finish():318] scan save: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json wandb-summary.json
+2021-06-30 20:12:22,395 INFO    SenderThread:50094 [dir_watcher.py:finish():318] scan save: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log output.log
+2021-06-30 20:12:22,398 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 6
+2021-06-30 20:12:22,399 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:22,399 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:22,403 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 6
+2021-06-30 20:12:22,403 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:22,404 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 6
+2021-06-30 20:12:22,404 INFO    SenderThread:50094 [file_pusher.py:finish():177] shutting down file pusher
+2021-06-30 20:12:22,506 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:22,506 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:22,607 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:22,608 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:22,709 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:22,709 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:22,811 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:22,811 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:22,913 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:22,913 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,016 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,016 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,118 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,118 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,220 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,220 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,262 INFO    Thread-13 :50094 [upload_job.py:push():137] Uploaded file /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/config.yaml
+2021-06-30 20:12:23,277 INFO    Thread-14 :50094 [upload_job.py:push():137] Uploaded file /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/requirements.txt
+2021-06-30 20:12:23,290 INFO    Thread-15 :50094 [upload_job.py:push():137] Uploaded file /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/wandb-summary.json
+2021-06-30 20:12:23,301 INFO    Thread-16 :50094 [upload_job.py:push():137] Uploaded file /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/output.log
+2021-06-30 20:12:23,322 INFO    Thread-12 :50094 [upload_job.py:push():137] Uploaded file /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/files/conda-environment.yaml
+2021-06-30 20:12:23,322 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,322 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,424 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,424 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,522 INFO    Thread-7  :50094 [sender.py:transition_state():308] send defer: 7
+2021-06-30 20:12:23,523 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:23,523 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 7
+2021-06-30 20:12:23,523 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:23,523 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 7
+2021-06-30 20:12:23,525 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,712 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 8
+2021-06-30 20:12:23,712 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,712 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:23,712 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 8
+2021-06-30 20:12:23,713 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:23,713 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 8
+2021-06-30 20:12:23,713 INFO    SenderThread:50094 [sender.py:transition_state():308] send defer: 9
+2021-06-30 20:12:23,713 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: defer
+2021-06-30 20:12:23,713 DEBUG   SenderThread:50094 [sender.py:send():179] send: final
+2021-06-30 20:12:23,714 INFO    HandlerThread:50094 [handler.py:handle_request_defer():141] handle defer: 9
+2021-06-30 20:12:23,714 DEBUG   SenderThread:50094 [sender.py:send():179] send: footer
+2021-06-30 20:12:23,714 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: defer
+2021-06-30 20:12:23,714 INFO    SenderThread:50094 [sender.py:send_request_defer():304] handle sender defer: 9
+2021-06-30 20:12:23,814 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: poll_exit
+2021-06-30 20:12:23,814 DEBUG   SenderThread:50094 [sender.py:send_request():193] send_request: poll_exit
+2021-06-30 20:12:23,814 INFO    SenderThread:50094 [file_pusher.py:join():182] waiting for file pusher
+2021-06-30 20:12:23,815 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: get_summary
+2021-06-30 20:12:23,816 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: sampled_history
+2021-06-30 20:12:23,817 DEBUG   HandlerThread:50094 [handler.py:handle_request():124] handle_request: shutdown
+2021-06-30 20:12:23,817 INFO    HandlerThread:50094 [handler.py:finish():638] shutting down handler
+2021-06-30 20:12:24,714 INFO    WriterThread:50094 [datastore.py:close():288] close: /home/labs/waic/sgvdan/workspace/BrainTumorDetection/wandb/run-20210630_201156-3kj0t3x6/run-3kj0t3x6.wandb
+2021-06-30 20:12:24,814 INFO    SenderThread:50094 [sender.py:finish():945] shutting down sender
+2021-06-30 20:12:24,814 INFO    SenderThread:50094 [file_pusher.py:finish():177] shutting down file pusher
+2021-06-30 20:12:24,815 INFO    SenderThread:50094 [file_pusher.py:join():182] waiting for file pusher
+2021-06-30 20:12:24,816 INFO    MainThread:50094 [internal.py:handle_exit():78] Internal process exited

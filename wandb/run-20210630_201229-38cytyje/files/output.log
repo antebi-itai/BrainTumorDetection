@@ -1,0 +1,232 @@
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(76)generate_heatmap()
+     74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+---> 76             self.model(occluded_images)
+     77
+     78         features = fe.flush_activations()
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(71)generate_heatmap()
+     69
+     70         heatmap = []
+---> 71         for idx, images in occluded_loader:
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+2431.802734375
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+2431.802734375
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+2431.802734375
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(76)generate_heatmap()
+     74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+---> 76             self.model(occluded_images)
+     77
+     78         features = fe.flush_activations()
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(71)generate_heatmap()
+     69
+     70         heatmap = []
+---> 71         for idx, images in occluded_loader:
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(72)generate_heatmap()
+     70         heatmap = []
+     71         for idx, images in occluded_loader:
+---> 72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(76)generate_heatmap()
+     74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+---> 76             self.model(occluded_images)
+     77
+     78         features = fe.flush_activations()
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(71)generate_heatmap()
+     69
+     70         heatmap = []
+---> 71         for idx, images in occluded_loader:
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(72)generate_heatmap()
+     70         heatmap = []
+     71         for idx, images in occluded_loader:
+---> 72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(74)generate_heatmap()
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+---> 74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+     76             self.model(occluded_images)
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(75)generate_heatmap()
+     73           # Run the model on batched occluded images
+     74           import pdb; pdb.set_trace()
+---> 75           with torch.no_grad():
+     76             self.model(occluded_images)
+     77
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(76)generate_heatmap()
+     74           import pdb; pdb.set_trace()
+     75           with torch.no_grad():
+---> 76             self.model(occluded_images)
+     77
+     78         features = fe.flush_activations()
+> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(71)generate_heatmap()
+     69
+     70         heatmap = []
+---> 71         for idx, images in occluded_loader:
+     72           occluded_images = images.to(device=self.device)
+     73           # Run the model on batched occluded images
+2431.802734375

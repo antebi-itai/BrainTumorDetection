@@ -4,6 +4,8 @@ from loss import accuracy
 from feature_extractor import FeatureExtractor
 from data import DataGenerator, OccludedImageGenerator
 from network import get_model
+import wandb
+wandb.login()
 
 
 class Experiment:
@@ -63,11 +65,12 @@ class Experiment:
 
         # Gather heatmap - forward pass over all occlusioned images & generate corresponding heatmaps
         heatmap = []
-        for idx, images in occluded_loader:
-          occluded_images = images.to(device=self.device)
-          # Run the model on batched occluded images
-          self.model(occluded_images)
+        with torch.no_grad():
+          for idx, images in occluded_loader:
+            occluded_images = images.to(device=self.device)
+            # Run the model on batched occluded images
+            self.model(occluded_images)
+            wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
 
         features = fe.flush_activations()
-        # TODO: NO L2C55 !!!
-        return torch.cat(features['L2C55']).reshape(original_image.shape)
+        return torch.cat(features['L2C55']).reshape((256, 256))  # TODO: MAKE THIS RIGHT
