@@ -1,0 +1,39 @@
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(39)train()
+     37 def train(model, criterion, accuracy, optimizer, train_loader, test_loader, epochs, device):
+     38     import pdb; pdb.set_trace()
+---> 39     for epoch in tqdm(range(epochs)):
+     40         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     41             # train
+  0%|          | 0/5 [00:00<?, ?it/s]
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(40)train()
+     38     import pdb; pdb.set_trace()
+     39     for epoch in tqdm(range(epochs)):
+---> 40         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     41             # train
+     42             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(42)train()
+     40         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     41             # train
+---> 42             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     43                        images=images, tumor_types=tumor_types, mode="Train")
+     44             # test
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(43)train()
+     41             # train
+     42             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+---> 43                        images=images, tumor_types=tumor_types, mode="Train")
+     44             # test
+     45             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(42)train()
+     40         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     41             # train
+---> 42             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     43                        images=images, tumor_types=tumor_types, mode="Train")
+     44             # test
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(45)train()
+     43                        images=images, tumor_types=tumor_types, mode="Train")
+     44             # test
+---> 45             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     46                        images=test_images, tumor_types=test_tumor_types, mode="Test")
+     47             # update best model if necessary
+
+  0%|          | 0/5 [00:21<?, ?it/s]

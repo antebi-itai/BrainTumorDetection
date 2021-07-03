@@ -1,11 +1,14 @@
 import torch
-from train import train
+from train import train, train_loop
 from loss import accuracy
 from feature_extractor import FeatureExtractor
 from data import DataGenerator, OccludedImageGenerator
-from network import get_model
+from network import get_model_and_optim
+from util import normalize_numpy
 import wandb
 wandb.login()
+from tqdm import tqdm
+import cv2
 
 
 class Experiment:
@@ -28,8 +31,7 @@ class Experiment:
         sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
         self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
         self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset, batch_size=self.train_batch_size, sampler=sampler)
-        self.model = get_model(self.model_name).to(self.device)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
+        self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device)
 
     """
     TODO: Doc
@@ -38,6 +40,18 @@ class Experiment:
         train(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
               optimizer=self.optimizer, train_loader=self.train_loader, test_loader=self.test_loader,
               epochs=self.epochs, device=self.device)
+
+    """
+    TODO: Doc
+    """
+    def eval_model(self):
+        accuracies = []
+        for test_images, test_tumor_types in self.test_loader:
+            accuracy = train_loop(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
+                                  optimizer=self.optimizer, device=self.device,
+                                  images=test_images, tumor_types=test_tumor_types, mode="Test")
+            accuracies.append(accuracy)
+        return sum(accuracies) / len(accuracies)
 
     """
     TODO: Doc
@@ -74,8 +88,9 @@ class Experiment:
           fe.plug_activation(layer, channel)
 
         # Forward pass over all occlusions of an image
+        print("Creating heatmap...")
         with torch.no_grad():
-          for idx, images in occluded_loader:
+          for idx, images in tqdm(occluded_loader):
             occluded_images = images.to(device=self.device)
             # Run the model on batched occluded images
             self.model(occluded_images)
@@ -84,10 +99,16 @@ class Experiment:
 
         # Generate heatmaps
         heatmaps = {}
+        overlay_heatmaps = {}
         for channel, heatmap in features.items():
-            heatmaps[channel] = torch.cat(heatmap).reshape((height, width))
+            binary_heatmap = normalize_numpy(torch.cat(heatmap).reshape((height, width)).cpu().numpy())
+            colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+            heatmaps[channel] = binary_heatmap
+            overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
+                                        0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
 
         # Log heatmaps
-        wandb.log({"heatmaps/image": [wandb.Image(heatmap.cpu(), caption=channel) for channel, heatmap in heatmaps.items()]})
+        wandb.log({"heatmaps/binary": [wandb.Image(binary_heatmap, caption=channel) for channel, binary_heatmap in heatmaps.items()]})
+        wandb.log({"heatmaps/overlay": [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps
