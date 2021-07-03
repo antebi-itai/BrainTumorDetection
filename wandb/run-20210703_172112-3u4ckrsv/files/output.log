@@ -1,0 +1,111 @@
+
+loading best model from: ./Models/vgg19.pth
+  1%|          | 2/256 [00:01<02:27,  1.72it/s]
+Model's accuracy:  tensor(0.9269, device='cuda:0')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 99%|█████████▉| 254/256 [02:21<00:01,  1.79it/s]
+> /home/labs/waic/itaian/BrainTumorDetection/experiment.py(105)generate_heatmap()
+    103         for channel, heatmap in features.items():
+    104             import pdb; pdb.set_trace()
+--> 105             binary_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy()
+    106             colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+
+100%|██████████| 256/256 [02:22<00:00,  1.79it/s]
+> /home/labs/waic/itaian/BrainTumorDetection/experiment.py(106)generate_heatmap()
+    104             import pdb; pdb.set_trace()
+    105             binary_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy()
+--> 106             colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+    107             heatmaps[channel] = binary_heatmap
+    108             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + 0.5 * original_image.numpy()
+array([[52828.383, 52828.383, 52828.383, ..., 52828.383, 52828.383,
+        52828.383],
+       [52828.383, 52828.383, 52828.383, ..., 52828.383, 52828.383,
+        52828.383],
+       [52828.383, 52828.383, 52828.383, ..., 52828.383, 52828.383,
+        52828.383],
+       ...,
+       [52827.89 , 52827.95 , 52828.39 , ..., 52828.035, 52827.887,
+        52827.63 ],
+       [52828.016, 52828.266, 52828.87 , ..., 52828.207, 52828.05 ,
+        52827.816],
+       [52827.973, 52828.35 , 52828.965, ..., 52828.184, 52828.03 ,
+        52827.848]], dtype=float32)
+<class 'numpy.ndarray'>
+cv2.error: OpenCV(4.5.1) ../modules/imgproc/src/colormap.cpp:736: error: (-5:Bad argument) cv::ColorMap only supports source images of type CV_8UC1 or CV_8UC3 in function 'operator()'
+> /home/labs/waic/itaian/BrainTumorDetection/experiment.py(106)generate_heatmap()
+    104             import pdb; pdb.set_trace()
+    105             binary_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy()
+--> 106             colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+    107             heatmaps[channel] = binary_heatmap
+    108             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + 0.5 * original_image.numpy()
+--KeyboardInterrupt--
+KeyboardInterrupt: Interrupted by user

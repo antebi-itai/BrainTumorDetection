@@ -1,0 +1,135 @@
+
+loading best model from: ./Models/vgg19.pth
+Model's accuracy:  tensor(0.9273, device='cuda:0')
+Creating heatmap...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|█████████▉| 255/256 [02:21<00:00,  1.79it/s]
+> /home/labs/waic/itaian/BrainTumorDetection/experiment.py(105)generate_heatmap()
+    103         for channel, heatmap in features.items():
+    104             import pdb; pdb.set_trace()
+--> 105             binary_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy().astype("uint8")
+    106             colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+
+100%|██████████| 256/256 [02:22<00:00,  1.80it/s]
+> /home/labs/waic/itaian/BrainTumorDetection/experiment.py(106)generate_heatmap()
+    104             import pdb; pdb.set_trace()
+    105             binary_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy().astype("uint8")
+--> 106             colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+    107             heatmaps[channel] = binary_heatmap
+    108             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + 0.5 * original_image.numpy()
+> /home/labs/waic/itaian/BrainTumorDetection/experiment.py(107)generate_heatmap()
+    105             binary_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy().astype("uint8")
+    106             colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+--> 107             heatmaps[channel] = binary_heatmap
+    108             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + 0.5 * original_image.numpy()
+    109
+*** NameError: name 'plt' is not defined
+<matplotlib.image.AxesImage object at 0x2af3984bf160>
+<matplotlib.image.AxesImage object at 0x2af398b5fd00>
+<matplotlib.image.AxesImage object at 0x2af398bcf8b0>
+(256, 256)
+tensor(53050.3242)
+255
+53050.324
+255
+<matplotlib.image.AxesImage object at 0x2af398c31d30>
+(256, 256)
+49
+array([  0,   4,   8,  12,  16,  19,  21,  25,  29,  32,  35,  38,  41,
+        43,  46,  49,  52,  56,  57,  45,  24,   7,   8, 255, 234, 218,
+       224, 237, 240, 232], dtype=uint8)
+52807.453
+53050.324
+0.0
+1.0
+*** cv2.error: OpenCV(4.5.1) ../modules/imgproc/src/colormap.cpp:736: error: (-5:Bad argument) cv::ColorMap only supports source images of type CV_8UC1 or CV_8UC3 in function 'operator()'
+0
+132
+0
+1
+<matplotlib.image.AxesImage object at 0x2af398caf0d0>
+*** SyntaxError: unexpected EOF while parsing
+0
+255
+<matplotlib.image.AxesImage object at 0x2af398d10250>
+<matplotlib.image.AxesImage object at 0x2af398d74430>
+<matplotlib.image.AxesImage object at 0x2af398dd66d0>
+<matplotlib.image.AxesImage object at 0x2af398e3a9a0>
+<matplotlib.image.AxesImage object at 0x2af398e9ec40>
+255
+0
+<matplotlib.image.AxesImage object at 0x2af398f01eb0>
+*** cv2.error: OpenCV(4.5.1) ../modules/imgproc/src/colormap.cpp:736: error: (-5:Bad argument) cv::ColorMap only supports source images of type CV_8UC1 or CV_8UC3 in function 'operator()'
+<matplotlib.image.AxesImage object at 0x2af398f782e0>
+<matplotlib.image.AxesImage object at 0x2af398fd8520>
+53050.324
+52807.453
