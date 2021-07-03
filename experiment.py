@@ -4,8 +4,11 @@ from loss import accuracy
 from feature_extractor import FeatureExtractor
 from data import DataGenerator, OccludedImageGenerator
 from network import get_model_and_optim
+from util import normalize_numpy
 import wandb
 wandb.login()
+from tqdm import tqdm
+import cv2
 
 
 class Experiment:
@@ -85,8 +88,9 @@ class Experiment:
           fe.plug_activation(layer, channel)
 
         # Forward pass over all occlusions of an image
+        print("Creating heatmap...")
         with torch.no_grad():
-          for idx, images in occluded_loader:
+          for idx, images in tqdm(occluded_loader):
             occluded_images = images.to(device=self.device)
             # Run the model on batched occluded images
             self.model(occluded_images)
@@ -95,10 +99,16 @@ class Experiment:
 
         # Generate heatmaps
         heatmaps = {}
+        overlay_heatmaps = {}
         for channel, heatmap in features.items():
-            heatmaps[channel] = torch.cat(heatmap).reshape((height, width))
+            binary_heatmap = normalize_numpy(torch.cat(heatmap).reshape((height, width)).cpu().numpy())
+            colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
+            heatmaps[channel] = binary_heatmap
+            overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
+                                        0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
 
         # Log heatmaps
-        wandb.log({"heatmaps/image": [wandb.Image(heatmap.cpu(), caption=channel) for channel, heatmap in heatmaps.items()]})
+        wandb.log({"heatmaps/binary": [wandb.Image(binary_heatmap, caption=channel) for channel, binary_heatmap in heatmaps.items()]})
+        wandb.log({"heatmaps/overlay": [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps
