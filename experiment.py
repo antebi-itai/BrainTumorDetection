@@ -19,7 +19,7 @@ class Experiment:
         for key, value in config.items():
             setattr(self, key, value)
 
-        # training setting
+        # Settings
         self.criterion = torch.nn.functional.cross_entropy
         self.accuracy = accuracy
         self.test_dataset = DataGenerator(self.data_test_path)
@@ -43,34 +43,51 @@ class Experiment:
     TODO: Doc
     """
     def generate_heatmap(self, image_path):
+        """
+        Generate heat maps from image, based on experiment's model and heat layers
+
+        :param image_path: path to the image from which to create the heat maps
+        :return: heatmaps: dictionary containing descriptive keys (L`layer`C`channel) and corresponding heatmap.
+                           ordered in the same manner as the heat layers in the configuration
+        """
         occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path, occlusion_size=self.occlusion_size),
                                                       batch_size=self.heatmap_batch_size, shuffle=False)
 
         # Start extracting features
         fe = FeatureExtractor(model=self.model, device=self.device)
 
+        # Hook heat layers
         for heat_layer in self.heat_layers:
           fe.plug_layer(heat_layer)
 
-        # Forward pass over original image & Plug the channel with max value
+        # Forward pass over original image
         original_image = occluded_loader.dataset.get_image().to(self.device).unsqueeze(0)
-        self.model(original_image)
+        height, width = original_image.shape[2], original_image.shape[3]
 
+        self.model(original_image)
         feature_layers = fe.flush_layers()
 
+        # Hook the channel with max value
         for layer, feature_layer in feature_layers.items():
           # Set the most 'activated channel' as reference
-          channel = torch.argmax(torch.sum(feature_layer, dim=(2,3))).item()  # Sum over spatial dimensions
+          channel = torch.argmax(torch.sum(feature_layer, dim=(2, 3))).item()  # Sum over spatial dimensions
           fe.plug_activation(layer, channel)
 
-        # Gather heatmap - forward pass over all occlusioned images & generate corresponding heatmaps
-        heatmap = []
+        # Forward pass over all occlusions of an image
         with torch.no_grad():
           for idx, images in occluded_loader:
             occluded_images = images.to(device=self.device)
             # Run the model on batched occluded images
             self.model(occluded_images)
             wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
-
         features = fe.flush_activations()
-        return torch.cat(features['L2C55']).reshape((256, 256))  # TODO: MAKE THIS RIGHT
+
+        # Generate heatmaps
+        heatmaps = {}
+        for channel, heatmap in features.items():
+            heatmaps[channel] = torch.cat(heatmap).reshape((height, width))
+
+        # Log heatmaps
+        wandb.log({"heatmaps/image": [wandb.Image(heatmap.cpu(), caption=channel) for channel, heatmap in heatmaps.items()]})
+
+        return heatmaps
