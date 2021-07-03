@@ -1,0 +1,22 @@
+
+  0%|          | 0/4 [00:00<?, ?it/s]
+Best model found!! Model: vgg19, Accuracy: 0.4032258093357086
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.6451612710952759
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.7019867300987244
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.7419354915618896
+
+ 25%|██▌       | 1/4 [00:57<02:52, 57.65s/it]
+Best model found!! Model: vgg19, Accuracy: 0.7801418304443359
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.8846153616905212
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.9433962106704712
+
+ 50%|█████     | 2/4 [01:53<01:52, 56.32s/it]
+Best model found!! Model: vgg19, Accuracy: 0.9444444179534912
+
+
+100%|██████████| 4/4 [03:38<00:00, 54.70s/it]

@@ -1,0 +1,9 @@
+
+  0%|          | 0/4 [00:00<?, ?it/s]/home/labs/waic/itaian/.conda/envs/itai-env/lib/python3.9/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /opt/conda/conda-bld/pytorch_1623448238472/work/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+
+
+ 75%|███████▌  | 3/4 [02:43<00:54, 54.26s/it]
+Best model found!! Model: vgg19, Accuracy: 0.936170220375061
+
+100%|██████████| 4/4 [03:30<00:00, 52.53s/it]

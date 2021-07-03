@@ -1,0 +1,2 @@
+
+The model's accuracy is:  tensor(0.9409, device='cuda:0')

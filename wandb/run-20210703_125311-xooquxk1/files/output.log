@@ -1,0 +1,205 @@
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(37)train()
+     35 def train(model, criterion, accuracy, optimizer, train_loader, test_loader, epochs, device):
+     36     import pdb; pdb.set_trace()
+---> 37     for epoch in tqdm(range(epochs)):
+     38         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     39             # train
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(38)train()
+     36     import pdb; pdb.set_trace()
+     37     for epoch in tqdm(range(epochs)):
+---> 38         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     39             # train
+     40             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+  0%|          | 0/4 [00:00<?, ?it/s]
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(40)train()
+     38         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     39             # train
+---> 40             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     41                        images=images, tumor_types=tumor_types, mode="Train")
+     42             # test
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(41)train()
+     39             # train
+     40             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+---> 41                        images=images, tumor_types=tumor_types, mode="Train")
+     42             # test
+     43             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(40)train()
+     38         for (images, tumor_types), (test_images, test_tumor_types) in zip(train_loader, cycle(test_loader)):
+     39             # train
+---> 40             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     41                        images=images, tumor_types=tumor_types, mode="Train")
+     42             # test
+--Call--
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(51)train_loop()
+     49
+     50
+---> 51 def train_loop(model, criterion, accuracy, optimizer, device, images, tumor_types, mode="Train"):
+     52     # Move to device
+     53     images, tumor_types = images.to(device=device), tumor_types.to(device=device)
+'Train'
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(53)train_loop()
+     51 def train_loop(model, criterion, accuracy, optimizer, device, images, tumor_types, mode="Train"):
+     52     # Move to device
+---> 53     images, tumor_types = images.to(device=device), tumor_types.to(device=device)
+     54     # Run the model on the input batch
+     55     pred_tumors_scores = model(images)
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(55)train_loop()
+     53     images, tumor_types = images.to(device=device), tumor_types.to(device=device)
+     54     # Run the model on the input batch
+---> 55     pred_tumors_scores = model(images)
+     56
+     57     model_acc = None
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(57)train_loop()
+     55     pred_tumors_scores = model(images)
+     56
+---> 57     model_acc = None
+     58     # Calculate the accuracy for this batch
+     59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(59)train_loop()
+     57     model_acc = None
+     58     # Calculate the accuracy for this batch
+---> 59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+  0%|          | 0/4 [00:00<?, ?it/s]/home/labs/waic/itaian/.conda/envs/itai-env/lib/python3.9/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /opt/conda/conda-bld/pytorch_1623448238472/work/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(60)train_loop()
+     58     # Calculate the accuracy for this batch
+     59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+---> 60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+     62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(61)train_loop()
+     59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+---> 61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+     62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+     63     acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=None)
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(62)train_loop()
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+---> 62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+     63     acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=None)
+     64     wandb.log({"{mode}/accuracy".format(mode=mode): acc})
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(59)train_loop()
+     57     model_acc = None
+     58     # Calculate the accuracy for this batch
+---> 59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+tensor(0.9694, device='cuda:0')
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(60)train_loop()
+     58     # Calculate the accuracy for this batch
+     59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+---> 60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+     62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(61)train_loop()
+     59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+---> 61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+     62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+     63     acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=None)
+tensor(1., device='cuda:0')
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(62)train_loop()
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+---> 62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+     63     acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=None)
+     64     wandb.log({"{mode}/accuracy".format(mode=mode): acc})
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(59)train_loop()
+     57     model_acc = None
+     58     # Calculate the accuracy for this batch
+---> 59     for tumor_type, tumor_name in DataGenerator.tumor_type2name.items():
+     60         tumor_acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=tumor_type)
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+tensor(0.9694, device='cuda:0')
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(63)train_loop()
+     61         wandb.log({"{mode}/accuracy/{tumor_name}".format(mode=mode, tumor_name=tumor_name): tumor_acc})
+     62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+---> 63     acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=None)
+     64     wandb.log({"{mode}/accuracy".format(mode=mode): acc})
+     65
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(64)train_loop()
+     62         model_acc = tumor_acc if model_acc is None else min(model_acc, tumor_acc)
+     63     acc = accuracy(pred_tumors_scores, tumor_types, tumor_type=None)
+---> 64     wandb.log({"{mode}/accuracy".format(mode=mode): acc})
+     65
+     66     if mode == "Train":
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(66)train_loop()
+     64     wandb.log({"{mode}/accuracy".format(mode=mode): acc})
+     65
+---> 66     if mode == "Train":
+     67         # Calculate the loss for this batch
+     68         loss = criterion(pred_tumors_scores, tumor_types)
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(68)train_loop()
+     66     if mode == "Train":
+     67         # Calculate the loss for this batch
+---> 68         loss = criterion(pred_tumors_scores, tumor_types)
+     69         wandb.log({"{mode}/loss".format(mode=mode): loss})
+     70         # Update gradients
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(69)train_loop()
+     67         # Calculate the loss for this batch
+     68         loss = criterion(pred_tumors_scores, tumor_types)
+---> 69         wandb.log({"{mode}/loss".format(mode=mode): loss})
+     70         # Update gradients
+     71         optimizer.zero_grad()
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(71)train_loop()
+     69         wandb.log({"{mode}/loss".format(mode=mode): loss})
+     70         # Update gradients
+---> 71         optimizer.zero_grad()
+     72         backward(loss)
+     73         optimizer.step()
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(72)train_loop()
+     70         # Update gradients
+     71         optimizer.zero_grad()
+---> 72         backward(loss)
+     73         optimizer.step()
+     74
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(73)train_loop()
+     71         optimizer.zero_grad()
+     72         backward(loss)
+---> 73         optimizer.step()
+     74
+     75     return model_acc
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(75)train_loop()
+     71         optimizer.zero_grad()
+     72         backward(loss)
+     73         optimizer.step()
+     74
+---> 75     return model_acc
+tensor(0.9694, device='cuda:0')
+--Return--
+tensor(0.9694...vice='cuda:0')
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(75)train_loop()
+     71         optimizer.zero_grad()
+     72         backward(loss)
+     73         optimizer.step()
+     74
+---> 75     return model_acc
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(43)train()
+     41                        images=images, tumor_types=tumor_types, mode="Train")
+     42             # test
+---> 43             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     44                        images=test_images, tumor_types=test_tumor_types, mode="Test")
+     45             # update best model if necessary
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(44)train()
+     42             # test
+     43             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+---> 44                        images=test_images, tumor_types=test_tumor_types, mode="Test")
+     45             # update best model if necessary
+     46             best_models_dict = get_best_models_dict()
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(43)train()
+     41                        images=images, tumor_types=tumor_types, mode="Train")
+     42             # test
+---> 43             model_acc = train_loop(model=model, criterion=criterion, accuracy=accuracy, optimizer=optimizer, device=device,
+     44                        images=test_images, tumor_types=test_tumor_types, mode="Test")
+     45             # update best model if necessary
+> /home/labs/waic/itaian/BrainTumorDetection/train.py(46)train()
+     44                        images=test_images, tumor_types=test_tumor_types, mode="Test")
+     45             # update best model if necessary
+---> 46             best_models_dict = get_best_models_dict()
+     47             if model.name not in best_models_dict or model_acc > best_models_dict[model.name]:
+     48                 update_best_models(model, model_acc, best_models_dict)
+--KeyboardInterrupt--
+KeyboardInterrupt: Interrupted by user
+Best model found!! Model: vgg19, Accuracy: 0.9615384340286255
