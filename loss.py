@@ -9,5 +9,8 @@ def accuracy(pred_tumors_scores, gt_tumor_types, tumor_type=None):
 	else:
 		correct_tumor_predictions = ((pred_tumors_types == gt_tumor_types) & (gt_tumor_types == tumor_type)).count_nonzero()
 		tumor_batch_size = (gt_tumor_types == tumor_type).count_nonzero()
-		acc = correct_tumor_predictions / tumor_batch_size
+		if tumor_batch_size != 0:
+			acc = correct_tumor_predictions / tumor_batch_size
+		else:
+			acc = 1
 	return acc

@@ -1,0 +1,29 @@
+2021-07-04 18:29:13,920 INFO    MainThread:42805 [wandb_setup.py:_flush():69] setting env: {}
+2021-07-04 18:29:13,920 INFO    MainThread:42805 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-07-04 18:29:13,920 INFO    MainThread:42805 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-07-04 18:29:13,920 INFO    MainThread:42805 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-07-04 18:29:13,920 INFO    MainThread:42805 [wandb_init.py:_log_setup():337] Logging user logs to /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210704_182913-1voqq5x1/logs/debug.log
+2021-07-04 18:29:13,920 INFO    MainThread:42805 [wandb_init.py:_log_setup():338] Logging internal logs to /home/labs/waic/itaian/BrainTumorDetection/wandb/run-20210704_182913-1voqq5x1/logs/debug-internal.log
+2021-07-04 18:29:13,921 INFO    MainThread:42805 [wandb_init.py:_jupyter_setup():288] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x2ad9877f00a0>
+2021-07-04 18:29:13,921 INFO    MainThread:42805 [wandb_init.py:init():370] calling init triggers
+2021-07-04 18:29:13,921 INFO    MainThread:42805 [wandb_init.py:init():375] wandb.init called with sweep_config: {}
+config: {'model_name': 'vgg19', 'data_train_path': './Data/Training', 'data_test_path': './Data/Testing', 'epochs': 3, 'train_batch_size': 200, 'lr': 0.0001, 'heatmap_batch_size': 256, 'occlusion_size': (60, 60), 'heat_layers': [2, 5, 10, 12, 14, 16, 19, 23, 25, 28, 34], 'shuffle_data': True, 'device': 'cuda'}
+2021-07-04 18:29:13,921 INFO    MainThread:42805 [wandb_init.py:init():419] starting backend
+2021-07-04 18:29:13,921 INFO    MainThread:42805 [backend.py:_multiprocessing_setup():70] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-07-04 18:29:14,022 INFO    MainThread:42805 [backend.py:ensure_launched():135] starting backend process...
+2021-07-04 18:29:14,050 INFO    MainThread:42805 [backend.py:ensure_launched():139] started backend process with pid: 4119
+2021-07-04 18:29:14,051 INFO    MainThread:42805 [wandb_init.py:init():424] backend started and connected
+2021-07-04 18:29:14,087 INFO    MainThread:42805 [wandb_run.py:_label_probe_notebook():845] probe notebook
+2021-07-04 18:29:14,088 INFO    MainThread:42805 [wandb_run.py:_label_probe_notebook():852] Unable to probe notebook: 'NoneType' object has no attribute 'get'
+2021-07-04 18:29:14,088 INFO    MainThread:42805 [wandb_init.py:init():472] updated telemetry
+2021-07-04 18:29:14,089 INFO    MainThread:42805 [wandb_init.py:init():491] communicating current version
+2021-07-04 18:29:15,985 INFO    MainThread:42805 [wandb_init.py:init():496] got version response upgrade_message: "wandb version 0.10.33 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2021-07-04 18:29:15,986 INFO    MainThread:42805 [wandb_init.py:init():504] communicating run to backend with 30 second timeout
+2021-07-04 18:29:16,387 INFO    MainThread:42805 [wandb_init.py:init():529] starting run threads in backend
+2021-07-04 18:29:21,393 INFO    MainThread:42805 [wandb_run.py:_console_start():1624] atexit reg
+2021-07-04 18:29:21,394 INFO    MainThread:42805 [wandb_run.py:_redirect():1498] redirect: SettingsConsole.WRAP
+2021-07-04 18:29:21,394 INFO    MainThread:42805 [wandb_run.py:_redirect():1535] Wrapping output streams.
+2021-07-04 18:29:21,395 INFO    MainThread:42805 [wandb_run.py:_redirect():1559] Redirects installed.
+2021-07-04 18:29:21,395 INFO    MainThread:42805 [wandb_init.py:init():554] run started, returning control to user process
+2021-07-04 18:29:44,795 INFO    MainThread:42805 [wandb_run.py:finish():1294] finishing run antebi-itai/BrainTumorDetection/1voqq5x1

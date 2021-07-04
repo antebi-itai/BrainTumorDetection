@@ -1,0 +1,26 @@
+{
+    "os": "Linux-3.10.0-1127.el7.x86_64-x86_64-with-glibc2.17",
+    "python": "3.9.5",
+    "heartbeatAt": "2021-07-04T15:50:02.352838",
+    "startedAt": "2021-07-04T15:49:55.140287",
+    "docker": null,
+    "gpu": "Quadro RTX 8000",
+    "gpu_count": 1,
+    "cpu_count": 80,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/home/labs/waic/itaian/.cache/jupyter-runtime/120642/kernel-ffb10344-ad8e-41b3-91a4-cf994cd5bb5b.json"
+    ],
+    "state": "running",
+    "program": "BrainTumorDetection/BrainTumorDetection.ipynb",
+    "root": "/home/labs/waic/itaian/BrainTumorDetection",
+    "git": {
+        "remote": "https://github.com/antebi-itai/BrainTumorDetection.git",
+        "commit": "73f665da8770e2e6b35612b5695f3db4355814b1"
+    },
+    "email": "antebi.itai@gmail.com",
+    "host": "hgn02.wexac.weizmann.ac.il",
+    "username": "itaian",
+    "executable": "/home/labs/waic/itaian/.conda/envs/itai-env/bin/python"
+}

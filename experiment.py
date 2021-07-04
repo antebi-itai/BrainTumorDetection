@@ -88,7 +88,7 @@ class Experiment:
           fe.plug_activation(layer, channel)
 
         # Forward pass over all occlusions of an image
-        print("Creating heatmap...")
+        print("Creating heatmap...", flush=True)
         with torch.no_grad():
           for idx, images in tqdm(occluded_loader):
             occluded_images = images.to(device=self.device)

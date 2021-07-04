@@ -1,0 +1,125 @@
+/home/labs/waic/itaian/.conda/envs/itai-env/lib/python3.9/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /opt/conda/conda-bld/pytorch_1623448238472/work/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+Model's accuracy:  tensor(0.2862, device='cuda:0')
+  0%|          | 0/10 [00:00<?, ?it/s]
+Best model found!! Model: vgg19, Accuracy: 0.11764705926179886
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.6296296119689941
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.7222222089767456
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.7777777910232544
+
+ 10%|█         | 1/10 [01:44<15:37, 104.19s/it]
+Best model found!! Model: vgg19, Accuracy: 0.7799999713897705
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.8633093237876892
+
+ 20%|██        | 2/10 [02:58<11:34, 86.82s/it]
+Best model found!! Model: vgg19, Accuracy: 0.8771929740905762
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.9160839319229126
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.9178082346916199
+saving best model to: ./Models/vgg19.pth
+Best model found!! Model: vgg19, Accuracy: 0.9510489702224731
+
+
+ 40%|████      | 4/10 [05:03<06:56, 69.40s/it]
+Best model found!! Model: vgg19, Accuracy: 0.9635036587715149
+
+
+
+
+ 80%|████████  | 8/10 [08:30<01:48, 54.35s/it]
+Best model found!! Model: vgg19, Accuracy: 0.9861111044883728
+
+
+100%|██████████| 10/10 [10:17<00:00, 61.78s/it]
+Model's accuracy:  tensor(0.8961, device='cuda:0')
+  1%|          | 2/256 [00:01<02:13,  1.91it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|██████████| 256/256 [02:49<00:00,  1.51it/s]
