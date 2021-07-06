@@ -51,7 +51,7 @@ class Experiment:
                                   optimizer=self.optimizer, device=self.device,
                                   images=test_images, tumor_types=test_tumor_types, mode="Test")
             accuracies.append(accuracy)
-        return sum(accuracies) / len(accuracies)
+        return (sum(accuracies) / len(accuracies)).item()
 
     """
     TODO: Doc
@@ -101,14 +101,14 @@ class Experiment:
         heatmaps = {}
         overlay_heatmaps = {}
         for channel, heatmap in features.items():
-            binary_heatmap = normalize_numpy(torch.cat(heatmap).reshape((height, width)).cpu().numpy())
-            colorful_heatmap = cv2.applyColorMap(binary_heatmap, cv2.COLORMAP_JET)
-            heatmaps[channel] = binary_heatmap
+            gray_heatmap = normalize_numpy(torch.cat(heatmap).reshape((height, width)).cpu().numpy())
+            colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
+            heatmaps[channel] = gray_heatmap
             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
                                         0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
 
         # Log heatmaps
-        wandb.log({"heatmaps/binary": [wandb.Image(binary_heatmap, caption=channel) for channel, binary_heatmap in heatmaps.items()]})
+        wandb.log({"heatmaps/grayscale": [wandb.Image(gray_heatmap, caption=channel) for channel, gray_heatmap in heatmaps.items()]})
         wandb.log({"heatmaps/overlay": [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps

@@ -1,8 +1,7 @@
-import torch
 
 
 def coords2idx(pt, image):
-  return pt[0] * image.shape[1] + pt[1]
+    return pt[0] * image.shape[1] + pt[1]
 
 
 def idx2coords(idx, image):
