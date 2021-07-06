@@ -3,7 +3,7 @@ from train import train, train_loop
 from loss import accuracy
 from feature_extractor import FeatureExtractor
 from data import DataGenerator, OccludedImageGenerator
-from network import get_model_and_optim
+from network import get_model_and_optim, load_best_state
 from util import normalize_numpy
 import wandb
 wandb.login()
@@ -40,6 +40,7 @@ class Experiment:
         train(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
               optimizer=self.optimizer, train_loader=self.train_loader, test_loader=self.test_loader,
               epochs=self.epochs, device=self.device)
+        load_best_state(self.model, self.optimizer)
 
     """
     TODO: Doc
