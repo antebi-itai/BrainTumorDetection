@@ -9,6 +9,7 @@ import wandb
 wandb.login()
 from tqdm import tqdm
 import cv2
+import os
 
 
 class Experiment:
@@ -109,7 +110,10 @@ class Experiment:
                                         0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
 
         # Log heatmaps
-        wandb.log({"heatmaps/grayscale": [wandb.Image(gray_heatmap, caption=channel) for channel, gray_heatmap in heatmaps.items()]})
-        wandb.log({"heatmaps/overlay": [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
+        image_name = os.path.basename(image_path)
+        wandb.log({"heatmaps/grayscale {image_name}".format(image_name=image_name):
+                       [wandb.Image(gray_heatmap, caption=channel) for channel, gray_heatmap in heatmaps.items()]})
+        wandb.log({"heatmaps/overlay {image_name}".format(image_name=image_name):
+                       [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps

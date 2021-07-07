@@ -5,6 +5,8 @@ from PIL import Image
 import os
 import util
 import random
+from util import get_gt_mha_file_path, np_from_mha_path, get_most_activated_slice
+import numpy as np
 
 
 class Clip:
@@ -125,3 +127,45 @@ class OccludedImageGenerator(Dataset):
         util.occlude_image(image, idx, occlusion_size=self.occlusion_size)
 
         return idx, image
+
+
+class SegmentationGenerator(Dataset):
+    GT_PATTERN = ".OT."
+    
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+		
+        # construct self.brain_dirs
+        self.brain_dirs = []
+        for sub_dir in os.listdir(self.data_dir):
+            sub_dir = os.path.join(self.data_dir, sub_dir)
+            brain_file_names = os.listdir(sub_dir)
+            brain_dirs = [os.path.join(sub_dir, brain_file_name) for brain_file_name in brain_file_names]
+            self.brain_dirs += brain_dirs
+
+    def __len__(self):
+        return len(self.brain_dirs)
+    
+    def __getitem__(self, idx):
+        brain_dir = self.brain_dirs[idx]
+        
+        # find best slice for this brain
+        gt_mha_file_path = get_gt_mha_file_path(brain_dir)
+        gt_mha_3d = np_from_mha_path(gt_mha_file_path)
+        peak_slice = get_most_activated_slice(gt_mha_3d)        
+        
+        # extract gt_slice
+        gt_slice = gt_mha_3d[peak_slice]
+        
+        # extract mri_slices
+        mri_slices = []
+        mri_mha_file_names = [file_name for file_name in os.listdir(brain_dir) if self.GT_PATTERN not in file_name]
+        for mri_mha_file_name in mri_mha_file_names:
+            mri_mha_file_path = os.path.join(brain_dir, mri_mha_file_name)
+            mri_mha_3d = np_from_mha_path(mri_mha_file_path)
+            mri_slice = mri_mha_3d[peak_slice, :, :]
+            mri_slices.append(mri_slice)
+        mri_slices = np.array(mri_slices)
+        
+        return mri_slices, gt_slice
+    

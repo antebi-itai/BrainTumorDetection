@@ -4,4 +4,4 @@ __pycache__/
 .tmp.drivedownload/
 Models/*.pth
 Models/*.pkl
-
+wandb/
