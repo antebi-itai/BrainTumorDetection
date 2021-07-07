@@ -88,6 +88,8 @@ class Experiment:
           channel = torch.argmax(torch.sum(feature_layer, dim=(2, 3))).item()  # Sum over spatial dimensions
           fe.plug_activation(layer, channel)
 
+        #
+
         # Forward pass over all occlusions of an image
         print("Creating heatmap...", flush=True)
         with torch.no_grad():

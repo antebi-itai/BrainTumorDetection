@@ -39,9 +39,20 @@ class FeatureExtractor:
 
         return _get_layer_output
 
-    def plug_layer(self, layer):
-        hook = self._init_layer_hook(layer)
-        handle = self.model.features[layer].register_forward_hook(hook)
+    def plug_layer(self, layer_pos):
+        """
+
+        :param layer_pos: the position of the layer within the model, given as array
+        :return:
+        """
+        # Traverse through layers
+        runner = self.model._modules
+        for key in layer_pos:
+            runner = runner[key]
+        layer = runner
+
+        hook = self._init_layer_hook(str(layer_pos))
+        handle = layer.register_forward_hook(hook)
         self.layer_hook_handlers.append(handle)
 
     def _init_activation_hook(self, layer, channel):

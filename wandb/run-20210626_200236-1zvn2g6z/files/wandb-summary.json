@@ -1,1 +1,0 @@
-{"Train/accuracy/no": 1.0, "_runtime": 60, "_timestamp": 1624727017, "_step": 202, "Train/accuracy/yes": 0.9696969985961914, "Train/accuracy": 0.985714316368103, "Train/loss": 0.051101118326187134, "Test/accuracy/no": 0.9411764740943909, "Test/accuracy/yes": 0.7831325531005859, "Test/accuracy": 0.8100000023841858}
