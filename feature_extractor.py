@@ -27,15 +27,23 @@ class FeatureExtractor:
         self.layer_hook_handlers = []
         self.activation_hook_handlers = []
 
+    def _traverse_layers(self, layer_pos):
+        runner = self.model._modules
+        for key in layer_pos:
+            runner = runner[key]
+
+        return runner
+
     def _init_layer_hook(self, layer):
         """
         Defines the hook for extracting the features of `layer`
         Returns:
           The method to hook.
         """
+        self.layers_output[layer] = []
 
         def _get_layer_output(model, input, output):
-            self.layers_output[layer] = output
+            self.layers_output[layer].append(output)
 
         return _get_layer_output
 
@@ -46,27 +54,25 @@ class FeatureExtractor:
         :return:
         """
         # Traverse through layers
-        runner = self.model._modules
-        for key in layer_pos:
-            runner = runner[key]
-        layer = runner
-
+        layer = self._traverse_layers(layer_pos)
         hook = self._init_layer_hook(str(layer_pos))
         handle = layer.register_forward_hook(hook)
         self.layer_hook_handlers.append(handle)
 
-    def _init_activation_hook(self, layer, channel):
-        key = 'L' + str(layer) + 'C' + str(channel)
+    def _init_activation_hook(self, layer_pos, channel):
+        key = 'L' + str(layer_pos) + 'C' + str(channel)
         self.activations_output[key] = []
 
         def _get_channel_activation(model, input, output):
             channel_activation = torch.sum(output[:, channel, :, :], dim=(1, 2))
             self.activations_output[key].append(channel_activation)
+
         return _get_channel_activation
 
-    def plug_activation(self, layer, channel):
-        hook = self._init_activation_hook(layer, channel)
-        handle = self.model.features[layer].register_forward_hook(hook)
+    def plug_activation(self, layer_pos, channel):
+        layer = self._traverse_layers(layer_pos)
+        hook = self._init_activation_hook(layer_pos, channel)
+        handle = layer.register_forward_hook(hook)
         self.activation_hook_handlers.append(handle)
 
     def flush_layers(self):

@@ -73,7 +73,7 @@ class Experiment:
 
         # Hook heat layers
         for heat_layer in self.heat_layers:
-          fe.plug_layer(heat_layer)
+            fe.plug_layer(heat_layer)
 
         # Forward pass over original image
         original_image = occluded_loader.dataset.get_image().to(self.device).unsqueeze(0)
@@ -83,12 +83,13 @@ class Experiment:
         feature_layers = fe.flush_layers()
 
         # Hook the channel with max value
-        for layer, feature_layer in feature_layers.items():
-          # Set the most 'activated channel' as reference
-          channel = torch.argmax(torch.sum(feature_layer, dim=(2, 3))).item()  # Sum over spatial dimensions
-          fe.plug_activation(layer, channel)
-
-        #
+        for layer_pos, (_, feature_layer) in zip(self.heat_layers, feature_layers.items()):
+            if len(feature_layer[0].shape) == 4:
+                # Set the most 'activated channel' as reference
+                channel = torch.argmax(torch.sum(feature_layer[0], dim=(2, 3))).item()  # Sum over spatial dimensions
+                fe.plug_activation(layer_pos, channel)
+            else:
+                fe.plug_layer(layer_pos)
 
         # Forward pass over all occlusions of an image
         print("Creating heatmap...", flush=True)
@@ -99,8 +100,9 @@ class Experiment:
             self.model(occluded_images)
             wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
         features = fe.flush_activations()
+        layers = fe.flush_layers()
 
-        # Generate heatmaps
+        # Generate convolutional heatmaps
         heatmaps = {}
         overlay_heatmaps = {}
         for channel, heatmap in features.items():
@@ -108,6 +110,15 @@ class Experiment:
             colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
             heatmaps[channel] = gray_heatmap
             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
+                                        0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
+
+        # Generate linear layers heatmaps
+        softmax = torch.nn.Softmax(dim=2)
+        for layer, heatmap in layers.items():
+            gray_heatmap = normalize_numpy(softmax(torch.cat(heatmap).reshape((height, width, -1)))[:, :, 0].cpu().numpy())
+            colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
+            heatmaps[layer] = gray_heatmap
+            overlay_heatmaps[layer] = 0.5 * colorful_heatmap + \
                                         0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
 
         # Log heatmaps
