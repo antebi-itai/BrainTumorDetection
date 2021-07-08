@@ -15,7 +15,7 @@ def filter_contours(contours, smallest_contour_len=30):
     return filter_contours
 
 
-def smoothened_contours(contours):
+def smoothene_contours(contours):
     smoothened_contours = []
     for contour in contours:
         x, y = contour.T
@@ -41,7 +41,7 @@ def mask_from_heatmap(image, thresh=0.9, smallest_contour_len=30):
     contours, hierarchy = cv2.findContours(image=thresh_img, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
     # filter out irrelevant contours, and smooth the rest
     contours = filter_contours(contours, smallest_contour_len=smallest_contour_len)
-    contours = smoothened_contours(contours=contours)
+    contours = smoothene_contours(contours=contours)
     # draw only filled contours
     mask = np.zeros(image.shape)
     cv2.fillPoly(img=mask, pts=contours, color=255)

@@ -1,8 +1,8 @@
 import torch
 from train import train, train_loop
-from loss import accuracy
+from loss import calc_accuracy
 from feature_extractor import FeatureExtractor
-from data import DataGenerator, OccludedImageGenerator
+from data import DataGenerator, OccludedImageGenerator, SegmentationGenerator
 from network import get_model_and_optim, load_best_state
 from util import normalize_numpy
 import wandb
@@ -25,8 +25,15 @@ class Experiment:
 
         # Settings
         self.criterion = torch.nn.functional.cross_entropy
-        self.accuracy = accuracy
-        self.test_dataset = DataGenerator(self.data_test_path)
+        self.calc_accuracy = calc_accuracy
+
+        if self.data_test_class is DataGenerator:
+            self.test_dataset = DataGenerator(self.data_test_path)
+        elif self.data_test_class is SegmentationGenerator:
+            self.test_dataset = SegmentationGenerator(data_dir=os.path.join(".", "SegmentationData", "train"), mri_type=self.mri_type)
+        else:
+            raise NotImplementedError()
+
         self.train_dataset = DataGenerator(self.data_train_path)
         weights = self.train_dataset.make_weights_for_balanced_classes()
         sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
@@ -38,7 +45,7 @@ class Experiment:
     TODO: Doc
     """
     def train_model(self):
-        train(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
+        train(model=self.model, criterion=self.criterion, calc_accuracy=self.calc_accuracy,
               optimizer=self.optimizer, train_loader=self.train_loader, test_loader=self.test_loader,
               epochs=self.epochs, device=self.device)
         load_best_state(self.model, self.optimizer)
@@ -48,8 +55,16 @@ class Experiment:
     """
     def eval_model(self):
         accuracies = []
-        for test_images, test_tumor_types in self.test_loader:
-            accuracy = train_loop(model=self.model, criterion=self.criterion, accuracy=self.accuracy,
+        for test_images, test_gt in self.test_loader:
+            # extract data from gt according to dataloader
+            if self.data_test_class is DataGenerator:
+                test_tumor_types = test_gt
+            elif self.data_test_class is SegmentationGenerator:
+                test_tumor_segmentations, test_tumor_types = test_gt
+            else:
+                raise NotImplementedError()
+            # test accuracy of batch
+            accuracy = train_loop(model=self.model, criterion=self.criterion, calc_accuracy=self.calc_accuracy,
                                   optimizer=self.optimizer, device=self.device,
                                   images=test_images, tumor_types=test_tumor_types, mode="Test")
             accuracies.append(accuracy)

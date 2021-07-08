@@ -5,7 +5,7 @@ from PIL import Image
 import os
 import util
 import random
-from util import get_gt_mha_file_path, np_from_mha_path, get_most_activated_slice
+import SimpleITK as sitk
 import numpy as np
 
 
@@ -129,12 +129,46 @@ class OccludedImageGenerator(Dataset):
         return idx, image
 
 
+def get_gt_mha_file_path(brain_dir):
+    for file_name in os.listdir(brain_dir):
+        if SegmentationGenerator.GT_PATTERN in file_name:
+            return os.path.join(brain_dir, file_name)
+
+
+def np_from_mha_path(mha_path):
+    return sitk.GetArrayFromImage(sitk.ReadImage(mha_path))
+
+
+def get_most_activated_slice(np_arr):
+    assert len(np_arr.shape) == 3
+    peak_slice = np_arr.sum(axis=(1, 2)).argmax()
+    return peak_slice
+
+
 class SegmentationGenerator(Dataset):
+
     GT_PATTERN = ".OT."
-    
-    def __init__(self, data_dir):
+    MRI_TYPES = ["Flair", "T1", "T1c", "T2"]
+
+    def __init__(self, data_dir, mri_type="Flair", input_size=(256, 256), reshape_input=True):
         self.data_dir = data_dir
-		
+        self.mri_type = mri_type
+        assert self.mri_type in self.MRI_TYPES
+        self.input_size = input_size
+        self.reshape_input = reshape_input
+
+        # define transforms
+        resize_transform = [transforms.ToPILImage(),
+                            transforms.Resize(self.input_size)]
+        tensor_transform = [transforms.ToTensor()]
+        rgb_transform = [transforms.Grayscale(num_output_channels=3)]
+
+        self._input_image_transforms = transforms.Compose((resize_transform if self.reshape_input else []) +
+                                                          rgb_transform +
+                                                          tensor_transform)
+        self._gt_transforms = transforms.Compose((resize_transform if self.reshape_input else []) +
+                                                 tensor_transform)
+
         # construct self.brain_dirs
         self.brain_dirs = []
         for sub_dir in os.listdir(self.data_dir):
@@ -148,7 +182,7 @@ class SegmentationGenerator(Dataset):
     
     def __getitem__(self, idx):
         brain_dir = self.brain_dirs[idx]
-        
+
         # find best slice for this brain
         gt_mha_file_path = get_gt_mha_file_path(brain_dir)
         gt_mha_3d = np_from_mha_path(gt_mha_file_path)
@@ -156,16 +190,23 @@ class SegmentationGenerator(Dataset):
         
         # extract gt_slice
         gt_slice = gt_mha_3d[peak_slice]
+        # normalize, to PIL, resize, to tensor
+        gt_slice = util.normalize_numpy(gt_slice)
+        gt_slice = self._gt_transforms(gt_slice)
         
         # extract mri_slices
-        mri_slices = []
-        mri_mha_file_names = [file_name for file_name in os.listdir(brain_dir) if self.GT_PATTERN not in file_name]
-        for mri_mha_file_name in mri_mha_file_names:
-            mri_mha_file_path = os.path.join(brain_dir, mri_mha_file_name)
-            mri_mha_3d = np_from_mha_path(mri_mha_file_path)
-            mri_slice = mri_mha_3d[peak_slice, :, :]
-            mri_slices.append(mri_slice)
-        mri_slices = np.array(mri_slices)
-        
-        return mri_slices, gt_slice
-    
+        # find path of file for the correct mri type
+        mri_type_pattern = ".MR_{mri_type}.".format(mri_type=self.mri_type)
+        mri_mha_file_names = [file_name for file_name in os.listdir(brain_dir) if mri_type_pattern in file_name]
+        assert len(mri_mha_file_names) == 1
+        mri_mha_file_name = mri_mha_file_names[0]
+        mri_mha_file_path = os.path.join(brain_dir, mri_mha_file_name)
+        # read 3d numpy scan
+        mri_mha_3d = np_from_mha_path(mri_mha_file_path)
+        # pick only slice with biggest tumor appearance
+        mri_slice = mri_mha_3d[peak_slice, :, :]
+        # normalize, to PIL, resize, to RGB, to tensor
+        mri_slice = util.normalize_numpy(mri_slice)
+        mri_slice = self._input_image_transforms(mri_slice)
+
+        return mri_slice, (gt_slice, 1)

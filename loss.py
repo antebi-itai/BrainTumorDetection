@@ -1,6 +1,6 @@
 
 
-def accuracy(pred_tumors_scores, gt_tumor_types, tumor_type=None):
+def calc_accuracy(pred_tumors_scores, gt_tumor_types, tumor_type=None):
 	batch_size = gt_tumor_types.size(0)
 	_, pred_tumors_types = pred_tumors_scores.max(dim=1)
 	if tumor_type is None:
