@@ -7,6 +7,7 @@ import util
 import random
 import SimpleITK as sitk
 import numpy as np
+import cv2
 
 
 class Clip:
@@ -41,13 +42,9 @@ class DataGenerator(Dataset):
         assert all([tumor_dir.endswith("_tumor") for tumor_dir in self.tumor_dirs])
 
         # define transforms
-        input_transforms = [transforms.Grayscale(num_output_channels=3), transforms.ToTensor()]
-        if self.reshape_input: input_transforms.insert(0, transforms.Resize(self.input_size))
-        self._input_transforms = transforms.Compose(input_transforms)
-        self._vis_transforms = transforms.Compose([
-            Clip(min=0, max=1),
-            transforms.ToPILImage()
-        ])
+        self._input_transforms = transforms.Compose(([transforms.Resize(self.input_size)] if self.reshape_input else []) +
+                                                    [transforms.Grayscale(num_output_channels=3),
+                                                     transforms.ToTensor()])
 
         # parse data from directory to convenient data structures
         self.tumor_image_paths = []
@@ -145,6 +142,17 @@ def get_most_activated_slice(np_arr):
     return peak_slice
 
 
+def get_most_middle_no_tumor_index(gt_3d):
+    num_slices = gt_3d.shape[0]
+    middle_slice = num_slices // 2
+
+    zero_gt_slice_indices = np.argwhere(np.count_nonzero(gt_3d, axis=(1, 2)) == 0).squeeze()
+    if zero_gt_slice_indices.size == 0:
+        raise RuntimeError("Did not find any no-tumor slice in GT")
+    most_middle_no_tumor_index = zero_gt_slice_indices[abs(zero_gt_slice_indices - middle_slice).argmin()]
+    return most_middle_no_tumor_index
+
+
 class SegmentationGenerator(Dataset):
 
     GT_PATTERN = ".OT."
@@ -160,8 +168,8 @@ class SegmentationGenerator(Dataset):
         # define transforms
         resize_transform = [transforms.ToPILImage(),
                             transforms.Resize(self.input_size)]
-        tensor_transform = [transforms.ToTensor()]
         rgb_transform = [transforms.Grayscale(num_output_channels=3)]
+        tensor_transform = [transforms.ToTensor()]
 
         self._input_image_transforms = transforms.Compose((resize_transform if self.reshape_input else []) +
                                                           rgb_transform +
@@ -182,19 +190,25 @@ class SegmentationGenerator(Dataset):
     
     def __getitem__(self, idx):
         brain_dir = self.brain_dirs[idx]
+        with_tumor = random.randint(0, 1)
 
         # find best slice for this brain
         gt_mha_file_path = get_gt_mha_file_path(brain_dir)
-        gt_mha_3d = np_from_mha_path(gt_mha_file_path)
-        peak_slice = get_most_activated_slice(gt_mha_3d)        
+        gt_3d = np_from_mha_path(gt_mha_file_path)
+        if with_tumor:
+            # pick only slice with biggest tumor appearance
+            slice_index = get_most_activated_slice(gt_3d)
+        else:
+            # pick slice closest to middle slice
+            slice_index = get_most_middle_no_tumor_index(gt_3d)
         
         # extract gt_slice
-        gt_slice = gt_mha_3d[peak_slice]
+        gt_slice = gt_3d[slice_index]
         # normalize, to PIL, resize, to tensor
-        gt_slice = util.normalize_numpy(gt_slice)
+        gt_slice = np.uint8(gt_slice)
         gt_slice = self._gt_transforms(gt_slice)
         
-        # extract mri_slices
+        # extract mri_slice
         # find path of file for the correct mri type
         mri_type_pattern = ".MR_{mri_type}.".format(mri_type=self.mri_type)
         mri_mha_file_names = [file_name for file_name in os.listdir(brain_dir) if mri_type_pattern in file_name]
@@ -202,11 +216,11 @@ class SegmentationGenerator(Dataset):
         mri_mha_file_name = mri_mha_file_names[0]
         mri_mha_file_path = os.path.join(brain_dir, mri_mha_file_name)
         # read 3d numpy scan
-        mri_mha_3d = np_from_mha_path(mri_mha_file_path)
-        # pick only slice with biggest tumor appearance
-        mri_slice = mri_mha_3d[peak_slice, :, :]
+        mri_3d = np_from_mha_path(mri_mha_file_path)
+        # pick only correct slice
+        mri_slice = mri_3d[slice_index, :, :]
         # normalize, to PIL, resize, to RGB, to tensor
-        mri_slice = util.normalize_numpy(mri_slice)
+        mri_slice = np.uint8(cv2.normalize(mri_slice, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
         mri_slice = self._input_image_transforms(mri_slice)
 
-        return mri_slice, (gt_slice, 1)
+        return mri_slice, (gt_slice, with_tumor)

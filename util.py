@@ -27,5 +27,7 @@ def occlude_image(image, idx, occlusion_size=(60, 60)):
 
 
 def normalize_numpy(np_image):
-    return (((np_image - np_image.min()) / (np_image.max() - np_image.min())) * 256).astype("uint8")
+    if np_image.max() == np_image.min():
+        return np_image
+    return ((np_image - np_image.min()) / (np_image.max() - np_image.min())) * 255
 
