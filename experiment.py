@@ -4,7 +4,7 @@ from loss import accuracy
 from feature_extractor import FeatureExtractor
 from data import DataGenerator, OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
-from util import normalize_numpy, overlay_heatmap
+from util import normalize_numpy, produce_visual_heatmaps
 import wandb
 wandb.login()
 from tqdm import tqdm
@@ -109,13 +109,13 @@ class Experiment:
         overlay_heatmaps = {}
         for channel, heatmap_array in activations.items():
             heatmap = torch.cat(heatmap_array).reshape((height, width))
-            heatmaps[channel], overlay_heatmaps[channel] = overlay_heatmap(original_image.squeeze().permute(1, 2, 0),
+            heatmaps[channel], overlay_heatmaps[channel] = produce_visual_heatmaps(original_image.squeeze().permute(1, 2, 0),
                                                                            heatmap)
         # Generate Linear layers heatmaps
         for layer, heatmap_array in layers.items():
             heatmap = torch.cat(heatmap_array).reshape((height, width, -1))
             correlated_heatmap = heatmap[:, :, 1] - heatmap[:, :, 0]
-            heatmaps[channel], overlay_heatmaps[channel] = overlay_heatmap(original_image.squeeze().permute(1, 2, 0),
+            heatmaps[layer], overlay_heatmaps[layer] = produce_visual_heatmaps(original_image.squeeze().permute(1, 2, 0),
                                                                            correlated_heatmap)
 
         # Log heatmaps

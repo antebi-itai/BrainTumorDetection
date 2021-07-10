@@ -27,10 +27,10 @@ def occlude_image(image, idx, occlusion_size=(60, 60)):
     return image
 
 
-def overlay_heatmap(image, heatmap):
+def produce_visual_heatmaps(image, heatmap):
     gray_heatmap = normalize_numpy(heatmap.cpu().numpy())
     colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
-    overlay = 0.5 * colorful_heatmap + 0.5 * gray_heatmap
+    overlay = 0.5 * colorful_heatmap + 0.5 * normalize_numpy(image.cpu().numpy())
 
     return gray_heatmap, overlay
 
