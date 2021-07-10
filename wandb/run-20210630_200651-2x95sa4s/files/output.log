@@ -1,6 +1,0 @@
-> /home/labs/waic/sgvdan/workspace/BrainTumorDetection/experiment.py(70)generate_heatmap()
-     68           # Run the model on batched occluded images
-     69           import pdb; pdb.set_trace()
----> 70           with torch.no_grad():
-     71             self.model(occluded_images)
-     72

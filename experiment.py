@@ -4,6 +4,7 @@ from loss import calc_accuracy
 from feature_extractor import FeatureExtractor
 from data import OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
+from util import produce_visual_heatmaps
 import wandb
 wandb.login()
 from tqdm import tqdm
@@ -81,9 +82,10 @@ class Experiment:
 
         # Hook heat layers
         for heat_layer in self.heat_layers:
-          fe.plug_layer(heat_layer)
+            fe.plug_layer(heat_layer)
 
         # Forward pass over original image
+        self.model.eval()
         original_image = occluded_loader.dataset.get_image().to(self.device).unsqueeze(0)
         height, width = original_image.shape[2], original_image.shape[3]
 
@@ -91,33 +93,49 @@ class Experiment:
         feature_layers = fe.flush_layers()
 
         # Hook the channel with max value
-        for layer, feature_layer in feature_layers.items():
-          # Set the most 'activated channel' as reference
-          channel = torch.argmax(torch.sum(feature_layer, dim=(2, 3))).item()  # Sum over spatial dimensions
-          fe.plug_activation(layer, channel)
+        for layer_pos, (_, feature_layer) in zip(self.heat_layers, feature_layers.items()):
+            if len(feature_layer[0].shape) == 4:
+                # Set the most 'activated channel' as reference
+                channel = torch.argmax(torch.sum(feature_layer[0], dim=(2, 3))).item()  # Sum over spatial dimensions
+                fe.plug_activation(layer_pos, channel)
+            else:
+                fe.plug_layer(layer_pos)
 
         # Forward pass over all occlusions of an image
         print("Creating heatmap...", flush=True)
         with torch.no_grad():
-          for idx, images in tqdm(occluded_loader):
-            occluded_images = images.to(device=self.device)
-            # Run the model on batched occluded images
-            self.model(occluded_images)
-            wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
-        features = fe.flush_activations()
+            for idx, images in tqdm(occluded_loader):
+                occluded_images = images.to(device=self.device)
+                self.model(occluded_images)
 
-        # Generate heatmaps
+                wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
+
+        activations = fe.flush_activations()
+        layers = fe.flush_layers()
+
         heatmaps = {}
         overlay_heatmaps = {}
-        for channel, heatmap in features.items():
-            gray_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy()
+        # Generate Convolutional heatmaps
+        for channel, heatmap_array in activations.items():
+            gray_heatmap = torch.cat(heatmap_array).reshape((height, width)).cpu().numpy()
             gray_heatmap = np.uint8(cv2.normalize(gray_heatmap, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
             colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
             heatmaps[channel] = gray_heatmap
             np_original_image = original_image.squeeze().permute(1, 2, 0).cpu().numpy()
             np_original_image = np.uint8(cv2.normalize(np_original_image, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
-            overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
-                                        0.5 * np_original_image
+            overlay_heatmaps[channel] = 0.5 * colorful_heatmap + 0.5 * np_original_image
+            
+        # Generate Linear layers heatmaps
+        for layer, heatmap_array in layers.items():
+            heatmap = torch.cat(heatmap_array).reshape((height, width, -1))
+            correlated_heatmap = heatmap[:, :, 1] - heatmap[:, :, 0]
+            gray_heatmap = correlated_heatmap.cpu().numpy()
+            gray_heatmap = np.uint8(cv2.normalize(gray_heatmap, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
+            colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
+            heatmaps[layer] = gray_heatmap
+            np_original_image = original_image.squeeze().permute(1, 2, 0).cpu().numpy()
+            np_original_image = np.uint8(cv2.normalize(np_original_image, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
+            overlay_heatmaps[layer] = 0.5 * colorful_heatmap + 0.5 * np_original_image
 
         # Log heatmaps
         image_name = os.path.basename(image_path)
