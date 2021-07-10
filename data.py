@@ -9,6 +9,9 @@ import SimpleITK as sitk
 import numpy as np
 import cv2
 
+tumor_type2name = {0: "no", 1: "yes"}
+tumor_name2type = {"no": 0, "yes": 1}
+
 
 class Clip:
     """Clips the values of an tensor into the requested range."""
@@ -28,13 +31,9 @@ class DataGenerator(Dataset):
     tumor_image_paths - list of paths of all images in the dataset
     tumor_types       - list of types of tumors corresponding to tumor_image_paths.
                         i.e. tumor_types[idx] is the type of tumor in image tumor_image_paths[idx]
-    tumor_type2name   - dictionary mapping type of tumor (integer) to tumor's scientific name.
-    tumor_name2type   - dictionary mapping tumor's scientific name to type of tumor (integer).
     """
-    tumor_type2name = {0: "no", 1: "yes"}
-    tumor_name2type = {"no": 0, "yes": 1}
 
-    def __init__(self, data_dir, input_size=(256, 256), reshape_input=True):
+    def __init__(self, data_dir, input_size=(256, 256), reshape_input=True, **kwargs):
         self.data_dir = data_dir
         self.tumor_dirs = os.listdir(self.data_dir)
         self.input_size = input_size
@@ -52,7 +51,7 @@ class DataGenerator(Dataset):
         for tumor_dir in self.tumor_dirs:
             tumor_name = tumor_dir.replace("_tumor", "")
             if tumor_name != "no": tumor_name = "yes"
-            tumor_type = self.tumor_name2type[tumor_name]
+            tumor_type = tumor_name2type[tumor_name]
             # add tumor image paths and types to lists
             tumor_image_paths = [os.path.join(self.data_dir, tumor_dir, file_name)
                                  for file_name in os.listdir(os.path.join(self.data_dir, tumor_dir))]
@@ -68,10 +67,10 @@ class DataGenerator(Dataset):
         tumor_image_path = self.tumor_image_paths[idx]
         with Image.open(tumor_image_path) as tumor_image:
             tumor_image_input = self._input_transforms(tumor_image)
-        return tumor_image_input, tumor_label
+        return tumor_image_input, (float('nan'), tumor_label)
 
     def make_weights_for_balanced_classes(self):
-        nclasses = len(self.tumor_type2name)
+        nclasses = len(tumor_type2name)
 
         count = [0] * nclasses
         for tumor_type in self.tumor_types:
@@ -186,11 +185,11 @@ class SegmentationGenerator(Dataset):
             self.brain_dirs += brain_dirs
 
     def __len__(self):
-        return len(self.brain_dirs)
+        return 2 * len(self.brain_dirs)
     
     def __getitem__(self, idx):
-        brain_dir = self.brain_dirs[idx]
-        with_tumor = random.randint(0, 1)
+        brain_dir = self.brain_dirs[idx // 2]
+        with_tumor = idx % 2
 
         # find best slice for this brain
         gt_mha_file_path = get_gt_mha_file_path(brain_dir)
@@ -207,6 +206,7 @@ class SegmentationGenerator(Dataset):
         # normalize, to PIL, resize, to tensor
         gt_slice = np.uint8(gt_slice)
         gt_slice = self._gt_transforms(gt_slice)
+        gt_slice = (gt_slice.squeeze() * 256).type(torch.uint8)
         
         # extract mri_slice
         # find path of file for the correct mri type
@@ -224,3 +224,7 @@ class SegmentationGenerator(Dataset):
         mri_slice = self._input_image_transforms(mri_slice)
 
         return mri_slice, (gt_slice, with_tumor)
+
+    def make_weights_for_balanced_classes(self):
+        nclasses = len(self)
+        return [1] * nclasses

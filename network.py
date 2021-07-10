@@ -18,8 +18,9 @@ def get_model_and_optim(model_name, pretrained=True, num_class=2, lr=1e-4, load_
     print("loading {model_name} model...".format(model_name=model_name))
 
     # define model
-    if model_name in ['vgg19', 'vgg11']:
-        model = getattr(torchvision.models, model_name)(pretrained=pretrained)
+    model_type = model_name.split("_")[0]
+    if model_type in ['vgg19', 'vgg11']:
+        model = getattr(torchvision.models, model_type)(pretrained=pretrained)
         model.classifier[-1] = Linear(in_features=4096, out_features=num_class, bias=True)
     else:
         raise NotImplementedError

@@ -6,3 +6,4 @@ Models/*.pth
 Models/*.pkl
 wandb/
 SegmentationData/
+SegmentationDataOriginal/

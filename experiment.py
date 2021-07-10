@@ -2,14 +2,14 @@ import torch
 from train import train, train_loop
 from loss import calc_accuracy
 from feature_extractor import FeatureExtractor
-from data import DataGenerator, OccludedImageGenerator, SegmentationGenerator
+from data import OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
-from util import normalize_numpy
 import wandb
 wandb.login()
 from tqdm import tqdm
 import cv2
 import os
+import numpy as np
 
 
 class Experiment:
@@ -23,22 +23,18 @@ class Experiment:
         for key, value in config.items():
             setattr(self, key, value)
 
-        # Settings
+        # train
+        self.train_dataset = self.data_train_class(data_dir=self.data_train_path, mri_type=self.mri_type)
+        train_weights = self.train_dataset.make_weights_for_balanced_classes()
+        train_sampler = torch.utils.data.sampler.WeightedRandomSampler(train_weights, len(train_weights))
+        self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset,
+                                                        batch_size=self.train_batch_size, sampler=train_sampler)
+        # test
+        self.test_dataset = self.data_test_class(data_dir=self.data_test_path, mri_type=self.mri_type)
+        self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
+
         self.criterion = torch.nn.functional.cross_entropy
         self.calc_accuracy = calc_accuracy
-
-        if self.data_test_class is DataGenerator:
-            self.test_dataset = DataGenerator(self.data_test_path)
-        elif self.data_test_class is SegmentationGenerator:
-            self.test_dataset = SegmentationGenerator(data_dir=os.path.join(".", "SegmentationData", "train"), mri_type=self.mri_type)
-        else:
-            raise NotImplementedError()
-
-        self.train_dataset = DataGenerator(self.data_train_path)
-        weights = self.train_dataset.make_weights_for_balanced_classes()
-        sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
-        self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
-        self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset, batch_size=self.train_batch_size, sampler=sampler)
         self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device)
 
     """
@@ -55,20 +51,16 @@ class Experiment:
     """
     def eval_model(self):
         accuracies = []
-        for test_images, test_gt in self.test_loader:
-            # extract data from gt according to dataloader
-            if self.data_test_class is DataGenerator:
-                test_tumor_types = test_gt
-            elif self.data_test_class is SegmentationGenerator:
-                test_tumor_segmentations, test_tumor_types = test_gt
-            else:
-                raise NotImplementedError()
+        weights = []
+        for (test_images, (test_tumor_segmentations, test_tumor_types)) in self.test_loader:
             # test accuracy of batch
             accuracy = train_loop(model=self.model, criterion=self.criterion, calc_accuracy=self.calc_accuracy,
                                   optimizer=self.optimizer, device=self.device,
                                   images=test_images, tumor_types=test_tumor_types, mode="Test")
             accuracies.append(accuracy)
-        return (sum(accuracies) / len(accuracies)).item()
+            weights.append(test_images.size(0))
+        test_accuracy = sum([accuracy * weight for accuracy, weight in zip(accuracies, weights)]) / sum(weights)
+        return test_accuracy
 
     """
     TODO: Doc
@@ -118,11 +110,14 @@ class Experiment:
         heatmaps = {}
         overlay_heatmaps = {}
         for channel, heatmap in features.items():
-            gray_heatmap = normalize_numpy(torch.cat(heatmap).reshape((height, width)).cpu().numpy())
+            gray_heatmap = torch.cat(heatmap).reshape((height, width)).cpu().numpy()
+            gray_heatmap = np.uint8(cv2.normalize(gray_heatmap, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
             colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
             heatmaps[channel] = gray_heatmap
+            np_original_image = original_image.squeeze().permute(1, 2, 0).cpu().numpy()
+            np_original_image = np.uint8(cv2.normalize(np_original_image, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
             overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
-                                        0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
+                                        0.5 * np_original_image
 
         # Log heatmaps
         image_name = os.path.basename(image_path)
