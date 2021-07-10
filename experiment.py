@@ -4,7 +4,6 @@ from loss import calc_accuracy
 from feature_extractor import FeatureExtractor
 from data import OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
-from util import produce_visual_heatmaps
 import wandb
 wandb.login()
 from tqdm import tqdm

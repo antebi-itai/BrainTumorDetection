@@ -5,5 +5,8 @@ __pycache__/
 Models/*.pth
 Models/*.pkl
 wandb/
+wandb/debug-internal.log
+wandb/debug.log
+wandb/latest-run
 SegmentationData/
 SegmentationDataOriginal/
