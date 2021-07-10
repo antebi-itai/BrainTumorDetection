@@ -4,7 +4,7 @@ from loss import accuracy
 from feature_extractor import FeatureExtractor
 from data import DataGenerator, OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
-from util import normalize_numpy
+from util import normalize_numpy, overlay_heatmap
 import wandb
 wandb.login()
 from tqdm import tqdm
@@ -76,6 +76,7 @@ class Experiment:
             fe.plug_layer(heat_layer)
 
         # Forward pass over original image
+        self.model.eval()
         original_image = occluded_loader.dataset.get_image().to(self.device).unsqueeze(0)
         height, width = original_image.shape[2], original_image.shape[3]
 
@@ -94,35 +95,30 @@ class Experiment:
         # Forward pass over all occlusions of an image
         print("Creating heatmap...", flush=True)
         with torch.no_grad():
-          for idx, images in tqdm(occluded_loader):
-            occluded_images = images.to(device=self.device)
-            # Run the model on batched occluded images
-            self.model(occluded_images)
-            wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
-        features = fe.flush_activations()
+            for idx, images in tqdm(occluded_loader):
+                occluded_images = images.to(device=self.device)
+                self.model(occluded_images)
+
+                wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
+
+        activations = fe.flush_activations()
         layers = fe.flush_layers()
 
-        # Generate convolutional heatmaps
+        # Generate Convolutional heatmaps
         heatmaps = {}
         overlay_heatmaps = {}
-        for channel, heatmap in features.items():
-            gray_heatmap = normalize_numpy(torch.cat(heatmap).reshape((height, width)).cpu().numpy())
-            colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
-            heatmaps[channel] = gray_heatmap
-            overlay_heatmaps[channel] = 0.5 * colorful_heatmap + \
-                                        0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
-
-        # Generate linear layers heatmaps
-        softmax = torch.nn.Softmax(dim=2)
-        for layer, heatmap in layers.items():
-            gray_heatmap = normalize_numpy(softmax(torch.cat(heatmap).reshape((height, width, -1)))[:, :, 0].cpu().numpy())
-            colorful_heatmap = cv2.cvtColor(cv2.applyColorMap(gray_heatmap, cv2.COLORMAP_JET), cv2.COLOR_BGR2RGB)
-            heatmaps[layer] = gray_heatmap
-            overlay_heatmaps[layer] = 0.5 * colorful_heatmap + \
-                                        0.5 * normalize_numpy(original_image.squeeze().permute(1, 2, 0).cpu().numpy())
+        for channel, heatmap_array in activations.items():
+            heatmap = torch.cat(heatmap_array).reshape((height, width))
+            heatmaps[channel], overlay_heatmaps[channel] = overlay_heatmap(original_image.squeeze().permute(1, 2, 0),
+                                                                           heatmap)
+        # Generate Linear layers heatmaps
+        for layer, heatmap_array in layers.items():
+            heatmap = torch.cat(heatmap_array).reshape((height, width, -1))
+            correlated_heatmap = heatmap[:, :, 1] - heatmap[:, :, 0]
+            heatmaps[channel], overlay_heatmaps[channel] = overlay_heatmap(original_image.squeeze().permute(1, 2, 0),
+                                                                           correlated_heatmap)
 
         # Log heatmaps
-        wandb.log({"heatmaps/grayscale": [wandb.Image(gray_heatmap, caption=channel) for channel, gray_heatmap in heatmaps.items()]})
         wandb.log({"heatmaps/overlay": [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps
