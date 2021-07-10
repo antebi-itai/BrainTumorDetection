@@ -56,8 +56,17 @@ def train(model, criterion, calc_accuracy, optimizer, train_loader, test_loader,
 
 
 def train_loop(model, criterion, calc_accuracy, optimizer, device, images, tumor_types, mode="Train"):
+    # Set model mode
+    if mode == "Train":
+        model.train()
+    elif mode == "Test":
+        model.eval()
+    else:
+        raise RuntimeError()
+
     # Move to device
     images, tumor_types = images.to(device=device), tumor_types.to(device=device)
+
     # Run the model on the input batch
     pred_tumors_scores = model(images)
 
