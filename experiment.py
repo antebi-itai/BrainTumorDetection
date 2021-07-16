@@ -91,6 +91,18 @@ class Experiment:
         self.model(original_image)
         feature_layers = fe.flush_layers()
 
+        # TODO: REMOVE
+        from matplotlib import pyplot as plt
+
+        for i in range(256, 286):
+            fe.plug_activation(['features', 0], 29)
+            x = occluded_loader.dataset[i][1].to(self.device).unsqueeze(0)
+            plt.figure(); plt.imshow(occluded_loader.dataset[i][1][0,:,:], cmap="gray"); plt.show()
+            y = self.model(x)
+            activations = fe.flush_activations()
+            print("Activation #{}:{}".format(i, activations["L['features', 0]C29"][0].cpu()))
+        # TODO: UP TO HERE
+
         # Hook the channel with max value
         for layer_pos, (_, feature_layer) in zip(self.heat_layers, feature_layers.items()):
             if len(feature_layer[0].shape) == 4:

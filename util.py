@@ -21,6 +21,6 @@ def occlude_image(image, idx, occlusion_size=(60, 60)):
     right = min(j + w, image.shape[2])
     down = min(i + h, image.shape[1])
 
-    image[:, up:down, left:right] = 0
+    image[:, up:down, left:right] = 1
 
     return image
