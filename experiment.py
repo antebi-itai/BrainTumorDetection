@@ -36,6 +36,8 @@ class Experiment:
         self.calc_accuracy = calc_accuracy
         self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device)
 
+        self.attributes_to_log = ["model_name", "occlusion_size", "heatmap_threshold"]
+
     """
     TODO: Doc
     """
@@ -140,3 +142,9 @@ class Experiment:
                        [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps
+
+    def log_hyperparameter(self, title="", additional_attributes=[]):
+        attributes_to_log = self.attributes_to_log + additional_attributes
+        table = wandb.Table(columns=attributes_to_log)
+        table.add_data(*[str(getattr(self, attribute)) for attribute in attributes_to_log])
+        wandb.log({"{title}/hyper_parameters".format(title=title): table})

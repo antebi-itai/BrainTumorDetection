@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from scipy.interpolate import splprep, splev
 import wandb
+import copy
 
 
 def filter_contours(contours, smallest_contour_len=30):
@@ -48,7 +49,7 @@ def mask_from_heatmap(image, thresh=0.9, smallest_contour_len=30):
     return mask
 
 
-def get_masks_from_heatmaps(heatmaps, title="", thresh=0.9, smallest_contour_len=30):
+def get_masks_from_heatmaps(heatmaps, thresh=0.9, smallest_contour_len=30):
     hot_masks = {}
     cold_masks = {}
     for channel, heatmap in heatmaps.items():
@@ -57,13 +58,15 @@ def get_masks_from_heatmaps(heatmaps, title="", thresh=0.9, smallest_contour_len
     return hot_masks, cold_masks
 
 
-def present_masks(original_image, gt_mask, hot_masks, cold_masks, title=""):
+def present_masks(original_image, gt_mask, hot_masks, cold_masks, title="", gt_threshold=0):
     original_image = original_image.permute(1, 2, 0).cpu().numpy()
     gt_mask = gt_mask.cpu().numpy()
     zeros = np.zeros_like(gt_mask)
     # present non-zero GT mask as green
-    gt_mask = np.stack((zeros, (gt_mask != 0).astype(np.int64), zeros), axis=2)
+    gt_mask = np.stack((zeros, (gt_mask > gt_threshold).astype(np.int64), zeros), axis=2)
     # present non-zero predicted mask as red
+    hot_masks = copy.deepcopy(hot_masks)
+    cold_masks = copy.deepcopy(cold_masks)
     for mask_dict in [hot_masks, cold_masks]:
         for channel in mask_dict:
             mask_dict[channel] = np.stack((mask_dict[channel], zeros, zeros), axis=2)
@@ -73,3 +76,12 @@ def present_masks(original_image, gt_mask, hot_masks, cold_masks, title=""):
     wandb.log({"{title}/cold_masks".format(title=title):
                    [wandb.Image(0.3 * original_image + 0.35 * gt_mask + 0.35 * cold_mask, caption=channel)
                     for channel, cold_mask in cold_masks.items()]})
+
+
+def calc_iou(mask1, mask2):
+    if mask1.dtype != 'bool': mask1 = mask1!=0
+    if mask2.dtype != 'bool': mask2 = mask2!=0
+    intersection = np.logical_and(mask1, mask2)
+    union = np.logical_or(mask1, mask2)
+    iou_score = np.sum(intersection) / np.sum(union)
+    return iou_score
