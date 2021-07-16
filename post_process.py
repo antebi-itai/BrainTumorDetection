@@ -44,16 +44,32 @@ def mask_from_heatmap(image, thresh=0.9, smallest_contour_len=30):
     contours = smoothene_contours(contours=contours)
     # draw only filled contours
     mask = np.zeros(image.shape)
-    cv2.fillPoly(img=mask, pts=contours, color=255)
+    cv2.fillPoly(img=mask, pts=contours, color=1)
     return mask
 
 
-def get_masks_from_heatmaps(heatmaps, thresh=0.9, smallest_contour_len=30):
+def get_masks_from_heatmaps(heatmaps, title="", thresh=0.9, smallest_contour_len=30):
     hot_masks = {}
     cold_masks = {}
     for channel, heatmap in heatmaps.items():
         hot_masks[channel]  = mask_from_heatmap(image=heatmap,     thresh=thresh, smallest_contour_len=smallest_contour_len)
         cold_masks[channel] = mask_from_heatmap(image=255-heatmap, thresh=thresh, smallest_contour_len=smallest_contour_len)
-    wandb.log({"heatmaps/hot_masks":  [wandb.Image(hot_mask,  caption=channel) for channel, hot_mask  in hot_masks.items() ]})
-    wandb.log({"heatmaps/cold_masks": [wandb.Image(cold_mask, caption=channel) for channel, cold_mask in cold_masks.items()]})
     return hot_masks, cold_masks
+
+
+def present_masks(original_image, gt_mask, hot_masks, cold_masks, title=""):
+    original_image = original_image.permute(1, 2, 0).cpu().numpy()
+    gt_mask = gt_mask.cpu().numpy()
+    zeros = np.zeros_like(gt_mask)
+    # present non-zero GT mask as green
+    gt_mask = np.stack((zeros, (gt_mask != 0).astype(np.int64), zeros), axis=2)
+    # present non-zero predicted mask as red
+    for mask_dict in [hot_masks, cold_masks]:
+        for channel in mask_dict:
+            mask_dict[channel] = np.stack((mask_dict[channel], zeros, zeros), axis=2)
+    wandb.log({"{title}/hot_masks".format(title=title):
+                   [wandb.Image(0.3 * original_image + 0.35 * gt_mask + 0.35 * hot_mask, caption=channel)
+                    for channel, hot_mask in hot_masks.items()]})
+    wandb.log({"{title}/cold_masks".format(title=title):
+                   [wandb.Image(0.3 * original_image + 0.35 * gt_mask + 0.35 * cold_mask, caption=channel)
+                    for channel, cold_mask in cold_masks.items()]})

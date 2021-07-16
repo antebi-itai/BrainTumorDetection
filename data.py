@@ -100,17 +100,9 @@ class RandomOccludedDataGenerator(DataGenerator):
 
 
 class OccludedImageGenerator(Dataset):
-    def __init__(self, ref_image_path, occlusion_size=(50, 50), reshape_input=True, reshape_input_size=(256, 256)):
-        self.ref_image_path = ref_image_path
-        self.reshape_input = reshape_input
+    def __init__(self, ref_image, occlusion_size=(50, 50)):
+        self.ref_image = ref_image
         self.occlusion_size = occlusion_size
-
-        input_transforms = [transforms.Grayscale(num_output_channels=3), transforms.ToTensor()]
-        if self.reshape_input: input_transforms.insert(0, transforms.Resize(reshape_input_size))
-        input_filter = transforms.Compose(input_transforms)
-
-        with Image.open(ref_image_path) as tumor_image:
-            self.ref_image = input_filter(tumor_image)
 
     def get_image(self):
         return self.ref_image

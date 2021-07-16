@@ -8,7 +8,6 @@ import wandb
 wandb.login()
 from tqdm import tqdm
 import cv2
-import os
 import numpy as np
 
 
@@ -65,15 +64,15 @@ class Experiment:
     """
     TODO: Doc
     """
-    def generate_heatmap(self, image_path):
+    def generate_heatmap(self, original_image, title=""):
         """
         Generate heat maps from image, based on experiment's model and heat layers
 
-        :param image_path: path to the image from which to create the heat maps
+        :param original_image: image from which to create the heat maps
         :return: heatmaps: dictionary containing descriptive keys (L`layer`C`channel) and corresponding heatmap.
                            ordered in the same manner as the heat layers in the configuration
         """
-        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(image_path, occlusion_size=self.occlusion_size),
+        occluded_loader = torch.utils.data.DataLoader(OccludedImageGenerator(original_image, occlusion_size=self.occlusion_size),
                                                       batch_size=self.heatmap_batch_size, shuffle=False)
 
         # Start extracting features
@@ -85,7 +84,7 @@ class Experiment:
 
         # Forward pass over original image
         self.model.eval()
-        original_image = occluded_loader.dataset.get_image().to(self.device).unsqueeze(0)
+        original_image = original_image.to(self.device).unsqueeze(0)
         height, width = original_image.shape[2], original_image.shape[3]
 
         self.model(original_image)
@@ -106,8 +105,6 @@ class Experiment:
             for idx, images in tqdm(occluded_loader):
                 occluded_images = images.to(device=self.device)
                 self.model(occluded_images)
-
-                wandb.log({"memory/usage": torch.cuda.memory_allocated()/(1024**2)})
 
         activations = fe.flush_activations()
         layers = fe.flush_layers()
@@ -137,10 +134,9 @@ class Experiment:
             overlay_heatmaps[layer] = 0.5 * colorful_heatmap + 0.5 * np_original_image
 
         # Log heatmaps
-        image_name = os.path.basename(image_path)
-        wandb.log({"heatmaps/grayscale {image_name}".format(image_name=image_name):
+        wandb.log({"{title}/grayscale_heatmaps".format(title=title):
                        [wandb.Image(gray_heatmap, caption=channel) for channel, gray_heatmap in heatmaps.items()]})
-        wandb.log({"heatmaps/overlay {image_name}".format(image_name=image_name):
+        wandb.log({"{title}/overlay_heatmaps".format(title=title):
                        [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps
