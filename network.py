@@ -8,14 +8,14 @@ import os
 def load_best_state(model, optimizer):
     best_model_path = os.path.join(MODELS_DIR, model.name + ".pth")
     if os.path.exists(best_model_path):
-        print("loading best model state from: {0}".format(best_model_path))
+        print("loading best model state from: {0}".format(best_model_path), flush=True)
         states_dict = torch.load(best_model_path)
         model.load_state_dict(states_dict['model_state_dict'])
         optimizer.load_state_dict(states_dict['optimizer_state_dict'])
 
 
 def get_model_and_optim(model_name, pretrained=True, num_class=2, lr=1e-4, load_best_model=True, device="cuda"):
-    print("loading {model_name} model...".format(model_name=model_name))
+    print("loading {model_name} model...".format(model_name=model_name), flush=True)
 
     # define model
     model_type = model_name.split("_")[0]
