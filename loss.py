@@ -1,3 +1,4 @@
+import torch
 
 
 def calc_accuracy(pred_tumors_scores, gt_tumor_types, tumor_type=None):
@@ -12,5 +13,5 @@ def calc_accuracy(pred_tumors_scores, gt_tumor_types, tumor_type=None):
 		if tumor_batch_size != 0:
 			acc = correct_tumor_predictions / tumor_batch_size
 		else:
-			acc = 1
-	return acc
+			acc = torch.tensor(1, dtype=pred_tumors_scores.dtype, device=pred_tumors_scores.device)
+	return round(acc.item(), 2)

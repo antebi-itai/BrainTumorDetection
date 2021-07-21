@@ -6,6 +6,7 @@ from itertools import cycle
 import os
 import pickle
 import torch
+from loss import calc_accuracy
 
 MODELS_DIR = os.path.join(".", "Models")
 BEST_MODELS_DICT_PATH = os.path.join(MODELS_DIR, "best_models_dict.pkl")
@@ -34,18 +35,18 @@ def update_best_models(model, optimizer, model_acc, best_models_dict):
                 }, best_model_path)
 
 
-def train(model, criterion, calc_accuracy, optimizer, train_loader, test_loader, epochs, device):
+def train(model, criterion, optimizer, train_loader, test_loader, epochs, device):
     for epoch in tqdm(range(epochs)):
         for (train_images, (train_tumor_segmentations, train_tumor_types)), \
             (test_images, (test_tumor_segmentations, test_tumor_types)) in zip(train_loader, cycle(test_loader)):
 
             # train
-            train_model_acc = train_loop(model=model, criterion=criterion, calc_accuracy=calc_accuracy,
+            train_model_acc = train_loop(model=model, criterion=criterion,
                                          optimizer=optimizer,
                                          device=device, images=train_images, tumor_types=train_tumor_types,
                                          mode="Train")
             # test
-            test_model_acc = train_loop(model=model, criterion=criterion, calc_accuracy=calc_accuracy,
+            test_model_acc = train_loop(model=model, criterion=criterion,
                                         optimizer=optimizer,
                                         device=device, images=test_images, tumor_types=test_tumor_types, mode="Test")
             # update best model if necessary
@@ -55,7 +56,7 @@ def train(model, criterion, calc_accuracy, optimizer, train_loader, test_loader,
                                    best_models_dict=best_models_dict)
 
 
-def train_loop(model, criterion, calc_accuracy, optimizer, device, images, tumor_types, mode="Train"):
+def train_loop(model, criterion, optimizer, device, images, tumor_types, mode="Train"):
     # Set model mode
     if mode == "Train":
         model.train()

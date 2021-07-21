@@ -1,6 +1,5 @@
 import torch
 from train import train, train_loop
-from loss import calc_accuracy
 from feature_extractor import FeatureExtractor
 import data
 from data import OccludedImageGenerator
@@ -38,7 +37,6 @@ class Experiment:
         self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
 
         self.criterion = torch.nn.functional.cross_entropy
-        self.calc_accuracy = calc_accuracy
         self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device)
 
     def run(self):
@@ -77,7 +75,7 @@ class Experiment:
     TODO: Doc
     """
     def train_model(self):
-        train(model=self.model, criterion=self.criterion, calc_accuracy=self.calc_accuracy,
+        train(model=self.model, criterion=self.criterion,
               optimizer=self.optimizer, train_loader=self.train_loader, test_loader=self.test_loader,
               epochs=self.epochs, device=self.device)
         load_best_state(self.model, self.optimizer)
@@ -90,13 +88,13 @@ class Experiment:
         weights = []
         for (test_images, (test_tumor_segmentations, test_tumor_types)) in self.test_loader:
             # test accuracy of batch
-            accuracy = train_loop(model=self.model, criterion=self.criterion, calc_accuracy=self.calc_accuracy,
+            accuracy = train_loop(model=self.model, criterion=self.criterion,
                                   optimizer=self.optimizer, device=self.device,
                                   images=test_images, tumor_types=test_tumor_types, mode="Test")
             accuracies.append(accuracy)
             weights.append(test_images.size(0))
         test_accuracy = sum([accuracy * weight for accuracy, weight in zip(accuracies, weights)]) / sum(weights)
-        return round(test_accuracy.item(), 2)
+        return round(test_accuracy, 2)
 
     """
     TODO: Doc

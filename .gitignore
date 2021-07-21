@@ -4,6 +4,7 @@ __pycache__/
 .tmp.drivedownload/
 Models/*.pth
 Models/*.pkl
+Models/*.old
 wandb/
 wandb/debug-internal.log
 wandb/debug.log
