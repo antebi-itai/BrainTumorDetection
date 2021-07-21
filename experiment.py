@@ -2,14 +2,15 @@ import torch
 from train import train, train_loop
 from loss import calc_accuracy
 from feature_extractor import FeatureExtractor
+import data
 from data import OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
 import wandb
-wandb.login()
 from tqdm import tqdm
 from post_process import calc_iou, present_masks, get_masks_from_heatmaps
 import cv2
 import numpy as np
+wandb.login()
 
 
 class Experiment:
@@ -27,13 +28,13 @@ class Experiment:
         self.heat_layers.append(self.ref_heat_layer)
 
         # train
-        self.train_dataset = self.data_train_class(data_dir=self.data_train_path, mri_type=self.mri_type, input_size=self.input_size)
+        self.train_dataset = eval(self.data_train_class)(data_dir=self.data_train_path, mri_type=self.mri_type, input_size=self.input_size)
         train_weights = self.train_dataset.make_weights_for_balanced_classes()
         train_sampler = torch.utils.data.sampler.WeightedRandomSampler(train_weights, len(train_weights))
         self.train_loader = torch.utils.data.DataLoader(dataset=self.train_dataset,
                                                         batch_size=self.train_batch_size, sampler=train_sampler)
         # test
-        self.test_dataset = self.data_test_class(data_dir=self.data_test_path, mri_type=self.mri_type, input_size=self.input_size)
+        self.test_dataset = eval(self.data_test_class)(data_dir=self.data_test_path, mri_type=self.mri_type, input_size=self.input_size)
         self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
 
         self.criterion = torch.nn.functional.cross_entropy
@@ -67,9 +68,10 @@ class Experiment:
             wandb.log({"{title}/IOU".format(title=title): iou[-1]})
 
         # log hyperparameters
-        self.log_hyperparameters(additional_atributes=['model_acc'])
+        wandb.log({"avg_iou": sum(iou)/len(iou)})
 
-        return self.iou
+        self.log_hyperparameters(additional_atributes=['model_acc'])
+        return iou
 
     """
     TODO: Doc
