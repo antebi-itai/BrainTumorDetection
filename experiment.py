@@ -7,6 +7,7 @@ from network import get_model_and_optim, load_best_state
 import wandb
 wandb.login()
 from tqdm import tqdm
+from post_process import calc_iou, present_masks, get_masks_from_heatmaps
 import cv2
 import numpy as np
 
@@ -22,6 +23,9 @@ class Experiment:
         for key, value in config.items():
             setattr(self, key, value)
 
+        # unite heat layer and additional layers
+        self.heat_layers.append(self.ref_heat_layer)
+
         # train
         self.train_dataset = self.data_train_class(data_dir=self.data_train_path, mri_type=self.mri_type, input_size=self.input_size)
         train_weights = self.train_dataset.make_weights_for_balanced_classes()
@@ -35,6 +39,37 @@ class Experiment:
         self.criterion = torch.nn.functional.cross_entropy
         self.calc_accuracy = calc_accuracy
         self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device)
+
+    def run(self):
+        self.train_model()
+        self.model_acc = self.eval_model()
+        print("Model's accuracy: {}".format(self.model_acc), flush=True)
+
+        iou = []
+        for image_num in range(len(self.test_dataset) // 2):
+            title = "#{image_num}".format(image_num=image_num)
+
+            # Original image
+            original_image, (gt_mask, gt_) = self.test_dataset[image_num * 2 + 1]
+            wandb.log({"{title}/original_image".format(title=title): [wandb.Image(original_image)]})
+
+            # Generate heatmaps
+            heatmaps = self.generate_heatmap(original_image, title=title)
+
+            # Calculate masks
+            hot_masks, cold_masks = get_masks_from_heatmaps(heatmaps,
+                                                            thresh=self.heatmap_threshold,
+                                                            smallest_contour_len=self.smallest_contour_len)
+            present_masks(original_image, gt_mask, hot_masks, cold_masks, title=title, gt_threshold=self.gt_threshold)
+
+            # calculate IOU
+            iou.append(calc_iou(gt_mask.cpu().numpy(), cold_masks[str(self.ref_heat_layer)]))
+            wandb.log({"{title}/IOU".format(title=title): iou[-1]})
+
+        # log hyperparameters
+        self.log_hyperparameters(additional_atributes=['model_acc'])
+
+        return self.iou
 
     """
     TODO: Doc
@@ -141,8 +176,7 @@ class Experiment:
 
         return heatmaps
 
-    def log_hyperparameter(self, title="", additional_attributes=[]):
-        attributes_to_log = self.attributes_to_log + additional_attributes
-        table = wandb.Table(columns=attributes_to_log)
-        table.add_data(*[str(getattr(self, attribute)) for attribute in attributes_to_log])
-        wandb.log({"{title}/hyper_parameters".format(title=title): table})
+    def log_hyperparameters(self, additional_atributes):
+        table = wandb.Table(columns=self.attributes_to_log)
+        table.add_data(*[str(getattr(self, attribute)) for attribute in self.attributes_to_log])
+        wandb.log({"hyper_parameters": table})
