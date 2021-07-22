@@ -50,6 +50,7 @@ class Experiment:
 
             # Original image
             original_image, (gt_mask, gt_) = self.test_dataset[image_num * 2 + 1]
+            gt_mask = gt_mask > self.gt_threshold
             wandb.log({"{title}/original_image".format(title=title): [wandb.Image(original_image)]})
 
             # Generate heatmaps
@@ -59,7 +60,8 @@ class Experiment:
             hot_masks, cold_masks = get_masks_from_heatmaps(heatmaps,
                                                             thresh=self.heatmap_threshold,
                                                             smallest_contour_len=self.smallest_contour_len)
-            present_masks(original_image, gt_mask, hot_masks, cold_masks, title=title, gt_threshold=self.gt_threshold)
+
+            present_masks(original_image, gt_mask, hot_masks, cold_masks, title=title)
 
             # calculate IOU
             iou.append(calc_iou(gt_mask.cpu().numpy(), cold_masks[str(self.ref_heat_layer)]))

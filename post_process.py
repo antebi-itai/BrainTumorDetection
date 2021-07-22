@@ -61,12 +61,12 @@ def get_masks_from_heatmaps(heatmaps, thresh=0.9, smallest_contour_len=30):
     return hot_masks, cold_masks
 
 
-def present_masks(original_image, gt_mask, hot_masks, cold_masks, title="", gt_threshold=0):
+def present_masks(original_image, gt_mask, hot_masks, cold_masks, title=""):
     original_image = original_image.permute(1, 2, 0).cpu().numpy()
     gt_mask = gt_mask.cpu().numpy()
     zeros = np.zeros_like(gt_mask)
     # present non-zero GT mask as green
-    gt_mask = np.stack((zeros, (gt_mask > gt_threshold).astype(np.int64), zeros), axis=2)
+    gt_mask = np.stack((zeros, gt_mask.astype(np.int64), zeros), axis=2)
     # present non-zero predicted mask as red
     hot_masks = copy.deepcopy(hot_masks)
     cold_masks = copy.deepcopy(cold_masks)
