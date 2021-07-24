@@ -37,11 +37,14 @@ class Experiment:
         self.test_loader = torch.utils.data.DataLoader(dataset=self.test_dataset, batch_size=self.train_batch_size, shuffle=True)
 
         self.criterion = torch.nn.functional.cross_entropy
-        self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device)
+        self.model, self.optimizer = get_model_and_optim(model_name=self.model_name, lr=self.lr, device=self.device,
+                                                         load_best_model=False)
 
     def run(self):
         self.train_model()
         self.model_acc = self.eval_model()
+        wandb.log({"model_accuracy": self.model_acc})
+
         print("Model's accuracy: {}".format(self.model_acc), flush=True)
 
         iou = []
