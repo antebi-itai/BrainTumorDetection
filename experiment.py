@@ -83,7 +83,7 @@ class Experiment:
         train(model=self.model, criterion=self.criterion,
               optimizer=self.optimizer, train_loader=self.train_loader, test_loader=self.test_loader,
               epochs=self.epochs, device=self.device)
-        load_best_state(self.model, self.optimizer)
+        # load_best_state(self.model, self.optimizer)
 
     """
     TODO: Doc
