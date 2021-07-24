@@ -45,9 +45,6 @@ class Experiment:
         print("Model's accuracy: {}".format(self.model_acc), flush=True)
 
         extra_iou = {}
-        for layer in self.heat_layers:
-            extra_iou[str(layer)] = []
-
         iou = []
         for image_num in range(len(self.test_dataset) // 2):
             title = "#{image_num}".format(image_num=image_num)
@@ -69,15 +66,17 @@ class Experiment:
 
             # calculate IOU
             gt_mask_cpu = gt_mask.cpu().numpy()
-            for layer in self.heat_layers:
-                temp = extra_iou[str(layer)]
-                temp.append(calc_iou(gt_mask_cpu, cold_masks[str(layer)]))
-                wandb.log({"{title}/IOU/{layer}".format(title=title, layer=layer): temp[-1]})
+            for channel, _ in heatmaps.items():
+                if channel not in extra_iou.keys():
+                    extra_iou[channel] = []
+                temp = extra_iou[channel]
+                temp.append(calc_iou(gt_mask_cpu, cold_masks[channel]))
+                wandb.log({"{title}/IOU/{channel}".format(title=title, channel=channel): temp[-1]})
 
         # log hyperparameters
-        for layer in self.heat_layers:
-            temp = extra_iou[str(layer)]
-            wandb.log({"avg_iou/{layer}".format(layer=layer): sum(temp) / len(temp)})
+        for channel, _ in heatmaps.items():
+            temp = extra_iou[channel]
+            wandb.log({"avg_iou/{channel}".format(channel=channel): sum(temp) / len(temp)})
 
         self.log_hyperparameters(additional_atributes=['model_acc'])
         return iou
