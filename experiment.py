@@ -44,6 +44,10 @@ class Experiment:
         self.model_acc = self.eval_model()
         print("Model's accuracy: {}".format(self.model_acc), flush=True)
 
+        extra_iou = {}
+        for layer in self.heat_layers:
+            extra_iou[str(layer)] = []
+
         iou = []
         for image_num in range(len(self.test_dataset) // 2):
             title = "#{image_num}".format(image_num=image_num)
@@ -64,11 +68,16 @@ class Experiment:
             present_masks(original_image, gt_mask, hot_masks, cold_masks, title=title)
 
             # calculate IOU
-            iou.append(calc_iou(gt_mask.cpu().numpy(), cold_masks[str(self.ref_heat_layer)]))
-            wandb.log({"{title}/IOU".format(title=title): iou[-1]})
+            gt_mask_cpu = gt_mask.cpu().numpy()
+            for layer in self.heat_layers:
+                temp = extra_iou[str(layer)]
+                temp.append(calc_iou(gt_mask_cpu, cold_masks[str(layer)]))
+                wandb.log({"{title}/IOU/{layer}".format(title=title, layer=layer): temp[-1]})
 
         # log hyperparameters
-        wandb.log({"avg_iou": sum(iou)/len(iou)})
+        for layer in self.heat_layers:
+            temp = extra_iou[str(layer)]
+            wandb.log({"avg_iou/{layer}".format(layer=layer): sum(temp) / len(temp)})
 
         self.log_hyperparameters(additional_atributes=['model_acc'])
         return iou
