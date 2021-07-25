@@ -59,7 +59,7 @@ class FeatureExtractor:
         self.layer_hook_handlers.append(handle)
 
     def _init_activation_hook(self, layer_pos, channel):
-        key = 'L' + str(layer_pos) + 'C' + str(channel)
+        key = str(layer_pos)
         self.activations_output[key] = []
 
         def _get_channel_activation(model, input, output):
