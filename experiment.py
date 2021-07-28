@@ -6,7 +6,7 @@ from data import OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
 import wandb
 from tqdm import tqdm
-from post_process import calc_iou, present_masks, mask_from_heatmap, get_masks_from_heatmaps
+from post_process import calc_iou, calc_dice, present_grad_masks, present_all_masks, mask_from_heatmap, get_masks_from_heatmaps
 from util import tensor2im
 import cv2
 import numpy as np
@@ -46,7 +46,8 @@ class Experiment:
         self.model_acc = self.eval_model()
         print("Model's accuracy: {}".format(self.model_acc), flush=True)
 
-        iou = []
+        cold_mask_dice = []
+        grad_mask_dice = []
         for image_num in range(len(self.test_dataset) // 2):
             title = "#{image_num}".format(image_num=image_num)
 
@@ -62,20 +63,29 @@ class Experiment:
             hot_masks, cold_masks = get_masks_from_heatmaps(heatmaps,
                                                             thresh=self.heatmap_threshold,
                                                             smallest_contour_len=self.smallest_contour_len)
-            grad_mask = self.get_mask_using_gradient(original_image)
+            grad_mask = self.get_mask_using_gradient(original_image,
+                                                     std_thresh=self.grad_std_thresh,
+                                                     kernel_size=self.grad_kernel_size,
+                                                     contour_threshold=self.grad_contour_threshold,
+                                                     smallest_contour_len=self.smallest_contour_len,
+                                                     device=self.device)
 
-            present_masks(original_image=original_image, gt_mask=gt_mask, grad_mask=grad_mask,
+            present_all_masks(original_image=original_image, gt_mask=gt_mask, grad_mask=grad_mask,
                           hot_masks=hot_masks, cold_masks=cold_masks, title=title)
 
-            # calculate IOU
-            iou.append(calc_iou(gt_mask.cpu().numpy(), cold_masks[str(self.ref_heat_layer)]))
-            wandb.log({"{title}/IOU".format(title=title): iou[-1]})
+            # calculate DSC
+            cold_mask_dice.append(calc_dice(gt_mask.cpu().numpy(), cold_masks[str(self.ref_heat_layer)]))
+            grad_mask_dice.append(calc_dice(gt_mask.cpu().numpy(), grad_mask))
+
+            wandb.log({"{title}/cold_mask_DSC".format(title=title): cold_mask_dice[-1]})
+            wandb.log({"{title}/grad_mask_DSC".format(title=title): grad_mask_dice[-1]})
 
         # log hyperparameters
-        wandb.log({"avg_iou": sum(iou)/len(iou)})
+        wandb.log({"avg_cold_dsc": sum(cold_mask_dice) / len(cold_mask_dice)})
+        wandb.log({"avg_grad_dsc": sum(grad_mask_dice) / len(grad_mask_dice)})
 
         self.log_hyperparameters(additional_atributes=['model_acc'])
-        return iou
+        return cold_mask_dice, grad_mask_dice
 
     """
     TODO: Doc
