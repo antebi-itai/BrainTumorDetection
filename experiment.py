@@ -6,9 +6,11 @@ from data import OccludedImageGenerator
 from network import get_model_and_optim, load_best_state
 import wandb
 from tqdm import tqdm
-from post_process import calc_iou, present_masks, get_masks_from_heatmaps
+from post_process import calc_iou, present_masks, mask_from_heatmap, get_masks_from_heatmaps
+from util import tensor2im
 import cv2
 import numpy as np
+from torch.autograd import backward
 wandb.login()
 
 
@@ -60,8 +62,10 @@ class Experiment:
             hot_masks, cold_masks = get_masks_from_heatmaps(heatmaps,
                                                             thresh=self.heatmap_threshold,
                                                             smallest_contour_len=self.smallest_contour_len)
+            grad_mask = self.get_mask_using_gradient(original_image)
 
-            present_masks(original_image, gt_mask, hot_masks, cold_masks, title=title)
+            present_masks(original_image=original_image, gt_mask=gt_mask, grad_mask=grad_mask,
+                          hot_masks=hot_masks, cold_masks=cold_masks, title=title)
 
             # calculate IOU
             iou.append(calc_iou(gt_mask.cpu().numpy(), cold_masks[str(self.ref_heat_layer)]))
@@ -177,6 +181,35 @@ class Experiment:
                        [wandb.Image(overlay_heatmap, caption=channel) for channel, overlay_heatmap in overlay_heatmaps.items()]})
 
         return heatmaps
+
+    def get_mask_using_gradient(self, original_image, std_thresh=2, kernel_size=30, contour_threshold=0.5,
+                                smallest_contour_len=30, device="cuda"):
+        # Move to device
+        images, tumor_types = original_image.unsqueeze(0).to(device=device), torch.zeros(1).to(device=device)
+        images.requires_grad = True
+        # Run the model on the input image
+        pred_tumors_scores = self.model(images)
+        # Calculate the loss for this image
+        loss = torch.nn.functional.cross_entropy(pred_tumors_scores, tumor_types.to(dtype=torch.long))
+        # Backprop the gradients to the image
+        self.optimizer.zero_grad()
+        backward(loss)
+
+        # gradients
+        grad_map = images.grad.squeeze().sum(axis=0)
+        # threshold using std
+        grad_map = (grad_map > (grad_map.mean() + (grad_map.std() * std_thresh))).float()
+        # blur
+        grad_map = torch.nn.functional.conv2d(input=grad_map.view(torch.Size([1, 1]) + grad_map.shape),
+                                              weight=(torch.ones(1, 1, kernel_size,
+                                                                 kernel_size) / kernel_size ** 2).cuda(),
+                                              padding='same').squeeze()
+        # normalized numpy
+        grad_map = np.uint8(cv2.normalize(tensor2im(grad_map), None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX))
+        # contours
+        grad_mask = mask_from_heatmap(grad_map, thresh=contour_threshold, smallest_contour_len=smallest_contour_len)
+
+        return grad_mask
 
     def log_hyperparameters(self, additional_atributes):
         table = wandb.Table(columns=self.attributes_to_log)
