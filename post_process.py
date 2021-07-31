@@ -61,24 +61,39 @@ def get_masks_from_heatmaps(heatmaps, thresh=0.9, smallest_contour_len=30):
     return hot_masks, cold_masks
 
 
-def present_masks(original_image, gt_mask, hot_masks, cold_masks, title=""):
+def present_all_masks(original_image, gt_mask, grad_mask, hot_masks, cold_masks, title=""):
     original_image = original_image.permute(1, 2, 0).cpu().numpy()
     gt_mask = gt_mask.cpu().numpy()
     zeros = np.zeros_like(gt_mask)
     # present non-zero GT mask as green
     gt_mask = np.stack((zeros, gt_mask.astype(np.int64), zeros), axis=2)
+    # present grad mask as blue
+    grad_mask = np.stack((zeros, zeros, grad_mask.astype(np.int64)), axis=2)
     # present non-zero predicted mask as red
     hot_masks = copy.deepcopy(hot_masks)
     cold_masks = copy.deepcopy(cold_masks)
     for mask_dict in [hot_masks, cold_masks]:
         for channel in mask_dict:
             mask_dict[channel] = np.stack((mask_dict[channel], zeros, zeros), axis=2)
-    wandb.log({"{title}/hot_masks".format(title=title):
+    wandb.log({"{title}/hot_masks(legacy)".format(title=title):
                    [wandb.Image(0.3 * original_image + 0.35 * gt_mask + 0.35 * hot_mask, caption=channel)
                     for channel, hot_mask in hot_masks.items()]})
-    wandb.log({"{title}/cold_masks".format(title=title):
-                   [wandb.Image(0.3 * original_image + 0.35 * gt_mask + 0.35 * cold_mask, caption=channel)
+    wandb.log({"{title}/all_masks".format(title=title):
+                   [wandb.Image(0.25 * original_image + 0.25 * gt_mask + 0.25 * grad_mask + 0.25 * cold_mask, caption=channel)
                     for channel, cold_mask in cold_masks.items()]})
+
+
+def present_grad_masks(original_image, gt_mask, grad_mask, title=""):
+    original_image = original_image.permute(1, 2, 0).cpu().numpy()
+    gt_mask = gt_mask.cpu().numpy()
+    zeros = np.zeros_like(gt_mask)
+    # present GT mask as green
+    gt_mask = np.stack((zeros, gt_mask.astype(np.int64), zeros), axis=2)
+    # present grad mask as blue
+    grad_mask = np.stack((zeros, zeros, grad_mask.astype(np.int64)), axis=2)
+
+    wandb.log({"{title}/grad_masks".format(title=title):
+                   [wandb.Image(0.34 * original_image + 0.33 * gt_mask + 0.33 * grad_mask)]})
 
 
 def calc_iou(mask1, mask2):
@@ -88,3 +103,9 @@ def calc_iou(mask1, mask2):
     union = np.logical_or(mask1, mask2)
     iou_score = np.sum(intersection) / np.sum(union)
     return iou_score
+
+
+def calc_dice(mask1, mask2):
+    intersection = np.logical_and(mask1, mask2)
+    DSC = 2 * np.count_nonzero(intersection) / (np.count_nonzero(mask1) + np.count_nonzero(mask2))
+    return DSC
